@@ -23,7 +23,7 @@
                     title: 'Users',
                     settings: {
                         nav: 3,
-                        content: 'Users'
+                        content: '<i class="fa fa-user"></i> Users'
                     }
                 }
             }
