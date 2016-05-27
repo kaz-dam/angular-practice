@@ -4,10 +4,10 @@
     angular.module('app.users')
         .controller('UsersController', UsersController);
 
-    UsersController.$inject = ['logger'];
+    UsersController.$inject = ['$q', 'dataservice', 'logger'];
     
     /* @ngInject */
-    function UsersController(logger) {
+    function UsersController($q, dataservice, logger) {
         var vm = this;
         vm.title = 'Users';
 

@@ -10,12 +10,19 @@
   function dataservice($http, $q, exception, logger) {
     var service = {
       getPeople: getPeople,
+      setPeople: setPeople,
       getMessageCount: getMessageCount
     };
 
     return service;
 
     function getMessageCount() { return $q.when(72); }
+
+    function setPeople() {
+      return $http.post('/api/people')
+          .then()
+          .catch();
+    }
 
     function getPeople() {
       return $http.get('/api/people')
