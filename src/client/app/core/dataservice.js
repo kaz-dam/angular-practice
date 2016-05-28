@@ -18,24 +18,24 @@
 
     function getMessageCount() { return $q.when(72); }
 
-    function setPeople() {
-      return $http.post('/api/people')
-          .then()
-          .catch();
+    function setPeople(data) {
+      return $http.post('/api/setPeople', data)
+          .then(success)
+          .catch(fail);
     }
 
     function getPeople() {
       return $http.get('/api/people')
         .then(success)
         .catch(fail);
+    }
 
-      function success(response) {
-        return response.data;
-      }
+    function success(response) {
+      return response.data;
+    }
 
-      function fail(e) {
-        return exception.catcher('XHR Failed for getPeople')(e);
-      }
+    function fail(e) {
+      return exception.catcher('XHR Failed for getPeople')(e);
     }
   }
 })();
