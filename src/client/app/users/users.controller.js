@@ -10,11 +10,19 @@
     function UsersController($q, dataservice, logger) {
         var vm = this;
         vm.title = 'Users';
+        vm.newPerson = {};
+        vm.onSubmit = onSubmit;
 
         activate();
 
         function activate() {
             logger.info('Activated Users View');
+        }
+
+        function onSubmit() {
+            var newPerson = vm.newPerson;
+            console.log(newPerson);
+            dataservice.setPeople(newPerson);
         }
     }
 })();
