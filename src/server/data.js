@@ -9,7 +9,7 @@ function getPeople() {
   return peopleJson.people;
 }
 
-function setPeople() {
-  console.log(data);
+function setPeople(data) {
   peopleJson.people.push(data);
+  return peopleJson;
 }

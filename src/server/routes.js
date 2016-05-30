@@ -16,7 +16,8 @@ function getPeople(req, res, next) {
 }
 
 function setPeople(req, res, next) {
-  res.status(200).send(data.setPeople);
+  var newData = req.body;
+  res.status(200).send(data.setPeople(newData));
 }
 
 function getPerson(req, res, next) {
