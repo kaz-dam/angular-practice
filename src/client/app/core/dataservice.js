@@ -19,7 +19,6 @@
     function getMessageCount() { return $q.when(72); }
 
     function setPeople(data) {
-      console.log(data);
       $http.post('/api/setPeople', data)
           .then(success)
           .catch(fail);
