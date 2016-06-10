@@ -1,0 +1,18 @@
+<div
+    class="form-group"
+    ng-class="{
+        'has-error':newUser.firstName.$touched
+    }">
+    <label for="inputFirstName" class="col-sm-2 control-label">First Name</label>
+    <div class="col-sm-10">
+        <input 
+            type="text"
+            name="firstName"
+            ng-model="vm.newPerson.firstName"
+            class="form-control"
+            id="inputFirstName"
+            placeholder="First Name"
+            required="required"
+            autocomplete="off">
+    </div>
+</div>

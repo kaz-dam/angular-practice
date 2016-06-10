@@ -27,7 +27,8 @@
     "angular-ui-router": "^0.2.18",
     "toastr": "^2.1.2",
     "angular-animate": "^1.5.3",
-    "angular-bootstrap": "^1.2.5"
+    "angular-bootstrap": "^1.2.5",
+    "angular-auto-validate": "^1.19.3"
   },
   "resolutions": {
     "angular": "1.5.3"
@@ -43,6 +44,11 @@
         "main": [
           "css/font-awesome.css"
       ]
+    },
+    "angular-auto-validate": {
+        "main": [
+          "dist/jcs-auto-validate.js"
+        ]
     }
   }
 }
