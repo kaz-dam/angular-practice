@@ -12,6 +12,7 @@
         vm.title = 'Users';
         vm.newPerson = {};
         vm.onSubmit = onSubmit;
+        vm.formObjects = formObjects;
 
         activate();
 
@@ -23,6 +24,20 @@
             var newPerson = vm.newPerson;
             console.log(newPerson);
             dataservice.setPeople(newPerson);
+        }
+
+        function formObjects() {
+            return {
+                fgClass: '',
+                labelFor: 'inputFirstName',
+                labelClass: 'col-sm-2',
+                label: 'First Name',
+                inputDivClass: 'col-sm-10',
+                inputName: 'firstName',
+                inputType: 'text',
+                model: vm.newPerson.firstName,
+                autocomplete: 'off'
+            };
         }
     }
 })();
