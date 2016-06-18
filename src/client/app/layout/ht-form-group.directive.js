@@ -14,10 +14,18 @@
 			restrict: 'EA',
 			replace: true,
 			scope: {
-				input: '@'
+				fgClass: '@',
+				labelClass: '@',
+				label: '@',
+				inputDivClass: '@',
+				inputName: '@',
+				inputType: '@',
+				formGroupModel: '='
 			},
 			templateUrl: 'app/layout/ht-form-group.html'
 		};
+
+		//////////////////////
 
 		FormGroupController.$inject = ['$scope', 'dataservice'];
 

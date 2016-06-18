@@ -1,14 +1,14 @@
 <div class="form-group {{fgClass}}">
-    <label for="{{labelFor}}" class="{{labelClass}} control-label">{{label}}</label>
+    <label for="{{inputName}}" class="{{labelClass}} control-label">{{label}}</label>
     <div class="{{inputDivClass}}">
         <input 
             class="form-control"
             name="{{inputName}}"
-            id="{{labelFor}}"
+            id="{{inputName}}"
             type="{{inputType}}"
-            ng-model="{{model}}"
+            ng-model= "formGroupModel"
             placeholder="{{label}}"
             required="required"
-            autocomplete="{{autocomplete}}">
+            autocomplete="off">
     </div>
 </div>
