@@ -12,7 +12,6 @@
         vm.title = 'Users';
         vm.newPerson = {};
         vm.onSubmit = onSubmit;
-        // vm.formObjects = formObjects();
 
         activate();
 
@@ -25,6 +24,5 @@
             console.log(newPerson);
             dataservice.setPeople(newPerson);
         }
-
     }
 })();

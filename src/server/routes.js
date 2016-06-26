@@ -1,6 +1,10 @@
 var router = require('express').Router();
 var four0four = require('./utils/404')();
 var data = require('./data');
+var mongo = require('mongodb').MongoClient;
+var assert = require('assert');
+
+var url = 'mongodb://localhost:27017/people';
 
 router.get('/people', getPeople);
 router.post('/setPeople', setPeople);
@@ -12,12 +16,35 @@ module.exports = router;
 //////////////
 
 function getPeople(req, res, next) {
-  res.status(200).send(data.people);
+  var people = [];
+  mongo.connect(url, function(err, db) {
+    assert.equal(null, err);
+    var items = db.collection('users').find();
+    items.forEach(function(doc, err) {
+      assert.equal(null, err);
+      people.push(doc);
+    }, function() {
+      db.close();
+      res.status(200).send(people);
+      // res.redirect('/', {people: people});
+    });
+  });
+  // res.status(200).send(data.people);
 }
 
 function setPeople(req, res, next) {
   var newData = req.body;
-  res.status(200).send(data.setPeople(newData));
+
+  mongo.connect(url, function(err, db) {
+    assert.equal(null, err);
+    db.collection('users').insertOne(newData, function(err, result) {
+      assert.equal(null, err);
+      console.log('New user inserted');
+      db.close();
+    });
+  });
+
+  res.status(200).redirect('/users');
 }
 
 function getPerson(req, res, next) {
