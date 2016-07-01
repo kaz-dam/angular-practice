@@ -26,10 +26,8 @@ function getPeople(req, res, next) {
     }, function() {
       db.close();
       res.status(200).send(people);
-      // res.redirect('/', {people: people});
     });
   });
-  // res.status(200).send(data.people);
 }
 
 function setPeople(req, res, next) {
@@ -44,7 +42,7 @@ function setPeople(req, res, next) {
     });
   });
 
-  res.status(200).redirect('/users');
+  res.status(200).redirect('/');
 }
 
 function getPerson(req, res, next) {

@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-
+    
     angular.module('app.users')
         .controller('UsersController', UsersController);
 
@@ -20,9 +20,19 @@
         }
 
         function onSubmit() {
+            setPeople()
+                .then(function() {
+                    logger.info('New user saved');
+                });
+        }
+
+        function setPeople() {
+            var defer = $q.defer();
             var newPerson = vm.newPerson;
             console.log(newPerson);
-            dataservice.setPeople(newPerson);
+
+            defer.resolve(dataservice.setPeople(newPerson));
+            return defer.promise;
         }
     }
 })();
