@@ -10,7 +10,7 @@
   	// custom modules
   	'app.core',
   	'app.widgets',
-  	'app.admin',
+  	'app.movies',
   	'app.dashboard',
   	'app.layout',
   	'app.users'

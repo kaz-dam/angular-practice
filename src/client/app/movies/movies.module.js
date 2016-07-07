@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  angular.module('app.admin', [
+  angular.module('app.movies', [
     'app.core',
     'app.widgets'
   ]);

@@ -10,8 +10,8 @@
   function DashboardController($q, dataservice, logger) {
     var vm = this;
     vm.news = {
-      title: 'angular-practice',
-      description: 'Hot Towel Angular is a SPA template for Angular developers.'
+      title: 'Rental time counter',
+      description: 'Movies that need to be brought back within an hour'
     };
     vm.messageCount = 0;
     vm.people = [];
