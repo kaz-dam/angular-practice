@@ -4,11 +4,34 @@
       <div class="row">
         <div class="widget wviolet">
           <div ht-widget-header title="{{vm.title}}"></div>
-          <div class="widget-content user container">
-            <h3>DVD's to rent..</h3>
-            <input type="text" placeholder="Search for movie..">
-            <button class="btn btn-primary">Advanced Search</button>
+          <div class="widget-content user">
+            <div class="container">
+              <div class="row">
+                <h3 class="col-md-12">DVD's to rent..</h3>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <input type="text" placeholder="Search for movie.." autocomplete="off">
+                  <button class="btn btn-default btn-xs"
+                          type="button"
+                          data-toggle="collapse"
+                          data-target="#collapseForm"
+                          aria-expanded="false"
+                          aria-controls="collapseForm">Advanced Search</button>
+                </div>
+              </div>
+              <div class="row">
+                <div class="collapse col-lg-2" id="collapseForm">
+                  <input type="text" placeholder="Title..">
+                  <input type="text" placeholder="Director..">
+                  <input type="text" placeholder="Actor..">
+                  <input type="text" placeholder="Genre..">
+                  <input type="number" placeholder="Release Date..">
+                </div>
+              </div>
+            </div>
           </div>
+          <!-- <div class="well">Content..</div> -->
           <div class="widget-foot">
             <div class="clearfix"></div>
           </div>

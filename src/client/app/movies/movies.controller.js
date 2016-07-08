@@ -9,7 +9,7 @@
   /* @ngInject */
   function MoviesController(logger) {
     var vm = this;
-    vm.title = 'Movies';
+    vm.title = 'Movie Database';
 
     activate();
 
