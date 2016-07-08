@@ -1,6 +1,5 @@
 var router = require('express').Router();
 var four0four = require('./utils/404')();
-var data = require('./data');
 var mongo = require('mongodb').MongoClient;
 var assert = require('assert');
 
@@ -19,7 +18,7 @@ function getPeople(req, res, next) {
   var people = [];
   mongo.connect(url, function(err, db) {
     assert.equal(null, err);
-    var items = db.collection('users').find();
+    var items = db.collection('members').find();
     items.forEach(function(doc, err) {
       assert.equal(null, err);
       people.push(doc);

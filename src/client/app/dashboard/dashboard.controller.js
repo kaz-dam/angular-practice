@@ -36,6 +36,7 @@
     function getPeople() {
       return dataservice.getPeople().then(function(data) {
         vm.people = data;
+        
         return vm.people;
       });
     }

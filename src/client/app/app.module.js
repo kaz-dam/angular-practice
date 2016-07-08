@@ -13,7 +13,7 @@
   	'app.movies',
   	'app.dashboard',
   	'app.layout',
-  	'app.users'
+  	'app.members'
   ]);
 
 })();

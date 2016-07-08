@@ -2,7 +2,7 @@
     'use strict';
     
     angular
-        .module('app.users')
+        .module('app.members')
         .run(appRun);
 
     appRun.$inject = ['routerHelper'];
@@ -14,16 +14,16 @@
     function getStates() {
         return [
             {
-                state: 'users',
+                state: 'members',
                 config: {
-                    url: '/users',
-                    templateUrl: 'app/users/users.html',
-                    controller: 'UsersController',
+                    url: '/members',
+                    templateUrl: 'app/members/members.html',
+                    controller: 'MembersController',
                     controllerAs: 'vm',
-                    title: 'Users',
+                    title: 'Members',
                     settings: {
                         nav: 3,
-                        content: '<i class="fa fa-user"></i> Users'
+                        content: '<i class="fa fa-user"></i> Members'
                     }
                 }
             }
