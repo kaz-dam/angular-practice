@@ -2,13 +2,15 @@
     <label for="{{inputName}}" class="{{labelClass}} control-label">{{label}}</label>
     <div class="{{inputDivClass}}">
         <input 
-            class="form-control"
+            class="{{inputClass}}"
             name="{{inputName}}"
             id="{{inputName}}"
             type="{{inputType}}"
             ng-model= "formGroupModel"
             placeholder="{{label}}"
             required="required"
-            autocomplete="off">
+            autocomplete="off"
+            value="{{value}}">{{text}}
+        <div ng-transclude></div>
     </div>
 </div>

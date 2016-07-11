@@ -33,20 +33,34 @@
 
                             <ht-form-group
                                 label-class="col-sm-2"
-                                label="Age"
+                                label="Gender"
                                 input-div-class="col-sm-10"
-                                input-name="age"
-                                input-type="number"
-                                form-group-model="vm.newPerson.age"
+                                input-class=""
+                                input-name="gender"
+                                input-type="radio"
+                                form-group-model="vm.newPerson.gender"
+                                value="female"
+                                text="Female"
+                                >
+                                <input ng-model="vm.newPerson.gender" type="radio" name="gender" value="male">Male
+                            </ht-form-group>
+
+                            <ht-form-group
+                                label-class="col-sm-2"
+                                label="Your Email"
+                                input-div-class="col-sm-10"
+                                input-name="email"
+                                input-type="email"
+                                form-group-model="vm.newPerson.email"
                                 ></ht-form-group>
 
                             <ht-form-group
                                 label-class="col-sm-2"
-                                label="Location"
+                                label="Phone number"
                                 input-div-class="col-sm-10"
-                                input-name="location"
-                                input-type="text"
-                                form-group-model="vm.newPerson.location"
+                                input-name="phone"
+                                input-type="tel"
+                                form-group-model="vm.newPerson.phone"
                                 ></ht-form-group>
 
                             <div class="form-group">

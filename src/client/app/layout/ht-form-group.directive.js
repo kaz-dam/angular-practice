@@ -13,6 +13,7 @@
 			controllerAs: 'vm',
 			restrict: 'EA',
 			replace: true,
+			transclude: true,
 			scope: {
 				fgClass: '@',
 				labelClass: '@',
@@ -20,6 +21,9 @@
 				inputDivClass: '@',
 				inputName: '@',
 				inputType: '@',
+				value: '@',
+				inputClass: '@',
+				text: '@',
 				formGroupModel: '='
 			},
 			templateUrl: 'app/layout/ht-form-group.html'
