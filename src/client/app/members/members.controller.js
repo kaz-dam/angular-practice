@@ -10,8 +10,10 @@
     function MembersController($q, dataservice, logger) {
         var vm = this;
         vm.title = 'Members';
+        vm.hideForm = 'collapse';
         vm.newPerson = {};
         vm.onSubmit = onSubmit;
+        vm.searchMembers = '';
 
         activate();
 

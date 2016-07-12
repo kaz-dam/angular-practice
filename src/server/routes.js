@@ -36,7 +36,6 @@ function setPeople(req, res, next) {
   newData.registered = currentDate;
   newData.rentedMovies = [];
   
-  // TODO add to new object date and rented movies
   mongo.connect(url, function(err, db) {
     assert.equal(null, err);
     db.collection('members').insertOne(newData, function(err, result) {
