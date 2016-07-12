@@ -30,11 +30,16 @@ function getPeople(req, res, next) {
 }
 
 function setPeople(req, res, next) {
-  var newData = req.body;
+  var newData = req.body,
+  currentDate = new Date().toDateString();
 
+  newData.registered = currentDate;
+  newData.rentedMovies = [];
+  
+  // TODO add to new object date and rented movies
   mongo.connect(url, function(err, db) {
     assert.equal(null, err);
-    db.collection('users').insertOne(newData, function(err, result) {
+    db.collection('members').insertOne(newData, function(err, result) {
       assert.equal(null, err);
       console.log('New user inserted');
       db.close();
@@ -46,6 +51,7 @@ function setPeople(req, res, next) {
 
 function getPerson(req, res, next) {
   var id = +req.params.id;
+  // TODO rewrite this lineˇˇˇˇ
   var person = data.people.filter(function(p) {
     return p.id === id;
   })[0];
