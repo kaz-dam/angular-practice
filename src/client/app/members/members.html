@@ -11,7 +11,7 @@
                                                              data-toggle="collapse"
                                                              data-target="#newUserForm"
                                                              aria-expanded="false"
-                                                             aria-controls="newUserForm">Add New User</button>
+                                                             aria-controls="newUserForm">Add New Member</button>
                             </label>
                             <form 
                                   class="form-horizontal"
@@ -83,7 +83,11 @@
                             <input class="pull-right" ng-model="vm.searchMembers" type="text" placeholder="Search..">
                         </div>
                         <div class="col-lg-12">
-                            
+                            <div class="col-lg-3 text-center" ng-repeat="m in vm.members">
+                                <h4>{{m.firstName}} {{m.lastName}}</h4>
+                                <p>{{m.phone}}</p>
+                                <p>{{m.email}}</p>
+                            </div>
                         </div>
                         <div class="clearfix"></div>
                     </div>

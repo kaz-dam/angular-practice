@@ -14,11 +14,21 @@
         vm.newPerson = {};
         vm.onSubmit = onSubmit;
         vm.searchMembers = '';
+        vm.members = [];
 
         activate();
 
         function activate() {
-            logger.info('Activated Members View');
+            getMembers()
+                .then(function() {
+                    logger.info('Activated Members View');
+            });
+        }
+
+        function getMembers() {
+            return dataservice.getPeople().then(function(data) {
+                vm.members = data;
+            });
         }
 
         function onSubmit() {
@@ -31,7 +41,6 @@
         function setPeople() {
             var defer = $q.defer();
             var newPerson = vm.newPerson;
-            console.log(newPerson);
 
             defer.resolve(dataservice.setPeople(newPerson));
             return defer.promise;
