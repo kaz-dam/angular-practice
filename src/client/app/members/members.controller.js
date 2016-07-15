@@ -28,6 +28,7 @@
         function getMembers() {
             return dataservice.getPeople().then(function(data) {
                 vm.members = data;
+                return vm.members;
             });
         }
 
