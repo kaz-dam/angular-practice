@@ -26,6 +26,7 @@
       });
     }
 
+    // TODO Number of rented movies
     function getMessageCount() {
       return dataservice.getMessageCount().then(function(data) {
         vm.messageCount = data;

@@ -5,13 +5,19 @@
     .module('app.core')
     .factory('dataservice', dataservice);
 
-  dataservice.$inject = ['$http', '$q', 'exception', 'logger'];
+  dataservice.$inject = ['$http', '$q', '$cacheFactory', 'exception', 'logger'];
   /* @ngInject */
-  function dataservice($http, $q, exception, logger) {
+  function dataservice($http, $q, $cacheFactory, exception, logger) {
     var service = {
       getPeople: getPeople,
       setPeople: setPeople,
       getMessageCount: getMessageCount
+    };
+
+    var membersCache = $cacheFactory('membersCache');
+
+    var config = {
+      cache: membersCache
     };
 
     return service;
@@ -25,7 +31,7 @@
     }
 
     function getPeople() {
-      return $http.get('/api/people')
+      return $http.get('/api/people', config)
         .then(success)
         .catch(fail);
     }
