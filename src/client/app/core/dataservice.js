@@ -8,16 +8,13 @@
   dataservice.$inject = ['$http', '$q', '$cacheFactory', 'exception', 'logger'];
   /* @ngInject */
   function dataservice($http, $q, $cacheFactory, exception, logger) {
+    
+    var cache = $cacheFactory('cache');
     var service = {
       getPeople: getPeople,
       setPeople: setPeople,
-      getMessageCount: getMessageCount
-    };
-
-    var membersCache = $cacheFactory('membersCache');
-
-    var config = {
-      cache: membersCache
+      getMessageCount: getMessageCount,
+      cache: cache
     };
 
     return service;
@@ -31,12 +28,17 @@
     }
 
     function getPeople() {
-      return $http.get('/api/people', config)
+      return $http.get('/api/people')
         .then(success)
         .catch(fail);
     }
 
+    // function updateCache() {
+    //   return $cacheFactory('$http').info();
+    // }
+
     function success(response) {
+      cache.put('members', response.data);
       return response.data;
     }
 

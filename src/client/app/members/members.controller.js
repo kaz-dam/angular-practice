@@ -4,15 +4,18 @@
     angular.module('app.members')
         .controller('MembersController', MembersController);
 
-    MembersController.$inject = ['$q', 'dataservice', 'logger'];
+    MembersController.$inject = ['$q', '$cacheFactory', 'dataservice', 'logger'];
     
     /* @ngInject */
-    function MembersController($q, dataservice, logger) {
+    function MembersController($q, $cacheFactory, dataservice, logger) {
+        var refresh = false;
         var vm = this;
+
         vm.title = 'Members';
         vm.hideForm = 'collapse';
         vm.newPerson = {};
         vm.onSubmit = onSubmit;
+        vm.getMembers = getMembers;
         vm.searchMembers = '';
         vm.members = [];
 
@@ -26,6 +29,7 @@
         }
 
         function getMembers() {
+            console.log(dataservice.cache.get('members'));
             return dataservice.getPeople().then(function(data) {
                 vm.members = data;
                 return vm.members;
@@ -46,5 +50,10 @@
             defer.resolve(dataservice.setPeople(newPerson));
             return defer.promise;
         }
+
+        // function updateCache() {
+        //     refresh = true;
+        //     console.log(dataservice.updateCache());
+        // }
     }
 })();
