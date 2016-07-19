@@ -8,14 +8,13 @@
     
     /* @ngInject */
     function MembersController($q, dataservice, logger) {
-        var refresh = false;
         var vm = this;
 
         vm.title = 'Members';
         vm.hideForm = 'collapse';
         vm.newPerson = {};
         vm.onSubmit = onSubmit;
-        vm.getMembers = getMembers;
+        vm.updateCache = updateCache;
         vm.searchMembers = '';
         vm.members = [];
 
@@ -63,9 +62,11 @@
             }
         }
 
-        // function updateCache() {
-        //     refresh = true;
-        //     console.log(dataservice.updateCache());
-        // }
+        function updateCache() {
+            return dataservice.getPeople().then(function(data) {
+                vm.members = data;
+                return vm.members;
+            });
+        }
     }
 })();

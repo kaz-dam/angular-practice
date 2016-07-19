@@ -35,11 +35,23 @@
     }
 
     function getPeople() {
-      return dataservice.getPeople().then(function(data) {
-        vm.people = data;
-        
-        return vm.people;
-      });
+      var members = dataservice.cache.get('members');
+      var defer = $q.defer();
+
+      defer.resolve(membersResolver(members));
+      return defer.promise;
     }
+
+    function membersResolver(obj) {
+            if (obj) {
+                vm.people = obj;
+                return vm.people;
+            } else {
+                dataservice.getPeople().then(function(data) {
+                    vm.people = data;
+                    return vm.people;
+                });
+            }
+        }
   }
 })();
