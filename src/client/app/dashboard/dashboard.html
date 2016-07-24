@@ -38,7 +38,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr ng-repeat="p in vm.people | filter:rentedMovies.length">
+                  <tr ng-repeat="p in vm.people | limitTo:vm.rentFilter">
                     <td>{{p.firstName}}</td>
                     <td>{{p.lastName}}</td>
                     <td>{{p.email}}</td>
