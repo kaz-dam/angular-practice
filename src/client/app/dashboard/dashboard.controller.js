@@ -15,7 +15,6 @@
     };
     vm.messageCount = 0;
     vm.people = [];
-    vm.rentFilter = rentFilter;
     vm.title = 'Dashboard';
 
     activate();
@@ -53,11 +52,6 @@
               return vm.people;
           });
       }
-    }
-
-    function rentFilter() {
-      // TODO logic for filtering
-      
     }
   }
 })();

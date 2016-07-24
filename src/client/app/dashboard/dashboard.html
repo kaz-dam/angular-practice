@@ -38,7 +38,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr ng-repeat="p in vm.people | limitTo:vm.rentFilter">
+                  <tr ng-repeat="p in vm.people | rentFilter">
                     <td>{{p.firstName}}</td>
                     <td>{{p.lastName}}</td>
                     <td>{{p.email}}</td>
