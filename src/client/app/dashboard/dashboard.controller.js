@@ -43,15 +43,15 @@
     }
 
     function membersResolver(obj) {
-            if (obj) {
-                vm.people = obj;
-                return vm.people;
-            } else {
-                dataservice.getPeople().then(function(data) {
-                    vm.people = data;
-                    return vm.people;
-                });
-            }
-        }
+      if (obj) {
+          vm.people = obj;
+          return vm.people;
+      } else {
+          dataservice.getPeople().then(function(data) {
+              vm.people = data;
+              return vm.people;
+          });
+      }
+    }
   }
 })();

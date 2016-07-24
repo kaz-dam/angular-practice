@@ -38,8 +38,8 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr ng-repeat="p in vm.people">
-                    <td><a href="#">{{p.firstName}}</a></td>
+                  <tr ng-repeat="p in vm.people | filter:rentedMovies.length">
+                    <td>{{p.firstName}}</td>
                     <td>{{p.lastName}}</td>
                     <td>{{p.email}}</td>
                     <td>{{p.rentedMovies}}</td>

@@ -33,10 +33,6 @@
         .catch(fail);
     }
 
-    // function updateCache() {
-    //   return $cacheFactory('$http').info();
-    // }
-
     function success(response) {
       cache.put('members', response.data);
       return response.data;
