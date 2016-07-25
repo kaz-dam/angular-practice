@@ -12,6 +12,7 @@
     var cache = $cacheFactory('cache');
     var service = {
       getPeople: getPeople,
+      getMovies: getMovies,
       setPeople: setPeople,
       getMessageCount: getMessageCount,
       cache: cache
@@ -30,6 +31,14 @@
     function getPeople() {
       return $http.get('/api/people')
         .then(success)
+        .catch(fail);
+    }
+
+    function getMovies() {
+      return $http.get('/api/movies')
+        .then(function(res) {
+          cache.put('movies', res.data)
+        })
         .catch(fail);
     }
 

@@ -7,6 +7,7 @@ var url = 'mongodb://localhost:27017/people';
 
 router.get('/people', getPeople);
 router.post('/setPeople', setPeople);
+router.get('/movies', getMovies);
 router.get('/person/:id', getPerson);
 router.get('/*', four0four.notFoundMiddleware);
 
@@ -25,6 +26,21 @@ function getPeople(req, res, next) {
     }, function() {
       db.close();
       res.status(200).send(people);
+    });
+  });
+}
+
+function getMovies(req, res, next) {
+  var movies = [];
+  mongo.connect(url, function(err, db) {
+    assert.equal(null, err);
+    var items = db.collection('movies').find();
+    items.forEach(function(doc, err) {
+      assert.equal(null, err);
+      movies.push(doc);
+    }, function() {
+      db.close();
+      res.status(200).send(movies);
     });
   });
 }
