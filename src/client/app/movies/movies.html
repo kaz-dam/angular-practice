@@ -31,7 +31,16 @@
               </div>
             </div>
           </div>
-          <!-- <div class="well">Content..</div> -->
+          <div class="well">
+            <div class="row">
+              <div class="col-lg-3 text-center " ng-repeat="m in vm.movies">
+                <movie-card title="{{m.Title}}"
+                            year="{{m.Year}}"
+                            poster="{{m.Poster}}">
+                </movie-card>
+              </div>
+            </div>
+          </div>
           <div class="widget-foot">
             <div class="clearfix"></div>
           </div>

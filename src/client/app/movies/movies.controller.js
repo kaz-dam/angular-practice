@@ -17,7 +17,7 @@
     function activate() {
       getMovies()
         .then(function() {
-          logger.info('Activated Movies View');          
+          logger.info('Activated Movies View');
         });
     }
 
