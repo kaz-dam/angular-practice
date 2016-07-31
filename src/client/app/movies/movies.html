@@ -11,7 +11,9 @@
               </div>
               <div class="row">
                 <div class="col-md-12">
-                  <input type="text" placeholder="Search for movie.." autocomplete="off">
+                  <div class="form-group pull-left">
+                    <input type="text" placeholder="Search for movie.." autocomplete="off">
+                  </div>
                   <button class="btn btn-default btn-xs"
                           type="button"
                           data-toggle="collapse"
@@ -21,19 +23,24 @@
                 </div>
               </div>
               <div class="row">
-                <div class="collapse col-lg-2" id="collapseForm">
-                  <input type="text" placeholder="Title..">
-                  <input type="text" placeholder="Director..">
-                  <input type="text" placeholder="Actor..">
-                  <input type="text" placeholder="Genre..">
-                  <input type="number" placeholder="Release Date..">
+                <div class="collapse col-lg-12" id="collapseForm">
+                  <input type="text" placeholder="Title.." ng-model="vm.searchCriteria.movieTitle">
+                  <input type="text" placeholder="Director.." ng-model="vm.searchCriteria.director">
+                  <input type="text" placeholder="Actor.." ng-model="vm.searchCriteria.actor">
+                  <input type="text" placeholder="Genre.." ng-model="vm.searchCriteria.genre">
+                  <select name="dates" id="dates" ng-model="vm.searchCriteria.releaseDate">
+                    <option disabled selected>Release Date..</option>
+                    <option value=""></option>
+                    <option ng-repeat="d in vm.releaseDates" value="{{d}}">{{d}}</option>
+                  </select>
+                  <!-- <input type="number" placeholder="Release Date.." ng-model="vm.searchCriteria.releaseDate"> -->
                 </div>
               </div>
             </div>
           </div>
           <div class="well">
             <div class="row">
-              <div class="col-lg-3 text-center " ng-repeat="m in vm.movies">
+              <div class="col-lg-3 text-center " ng-repeat="m in vm.movies"> <!-- TODO custom filter -->
                 <movie-card title="{{m.Title}}"
                             year="{{m.Year}}"
                             poster="{{m.Poster}}">
@@ -41,9 +48,9 @@
               </div>
             </div>
           </div>
-          <div class="widget-foot">
+          <!-- <div class="widget-foot">
             <div class="clearfix"></div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

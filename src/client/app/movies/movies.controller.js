@@ -10,15 +10,33 @@
   function MoviesController($q, dataservice, logger) {
     var vm = this;
     vm.movies = [];
+    vm.searchCriteria = {
+      movieTitle: '',
+      director: '',
+      actor: '',
+      genre: '',
+      releaseDate: ''
+    }
+    vm.releaseDates = [];
     vm.title = 'Movie Database';
 
     activate();
 
     function activate() {
-      getMovies()
+      var promises = [getMovies(), dates()];
+      return $q.all(promises)
         .then(function() {
           logger.info('Activated Movies View');
         });
+    }
+
+    function dates() {
+      var from = 1950,
+          to = 2016;
+      for (var i = from; i < to; i++) {
+        vm.releaseDates[i - from] = i;
+      }
+      return vm.releaseDates;
     }
 
     function getMovies() {
