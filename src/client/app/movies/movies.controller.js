@@ -9,13 +9,16 @@
   /* @ngInject */
   function MoviesController($q, dataservice, logger) {
     var vm = this;
+
+    // vm.customFilter = customFilter;
     vm.movies = [];
     vm.searchCriteria = {
-      movieTitle: '',
-      director: '',
-      actor: '',
-      genre: '',
-      releaseDate: ''
+      $: '',
+      Title: '',
+      Director: '',
+      Actors: '',
+      Genre: '',
+      Year: ''
     }
     vm.releaseDates = [];
     vm.title = 'Movie Database';
