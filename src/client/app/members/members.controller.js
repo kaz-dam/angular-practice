@@ -10,6 +10,8 @@
     function MembersController($q, dataservice, logger) {
         var vm = this;
 
+        vm.currentPage = 1;
+        vm.pageSize = 16;
         vm.title = 'Members';
         vm.hideForm = 'collapse';
         vm.newPerson = {};

@@ -4,6 +4,7 @@
   angular.module('app', [
   	// ng modules
     'ngAnimate',
+    'ui.bootstrap',
   	// third party modules
   	'jcs-autoValidate',
 

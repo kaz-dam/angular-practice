@@ -101,5 +101,133 @@
 		"Poster":"http://ia.media-imdb.com/images/M/MV5BMTQwMDY0MTA4MF5BMl5BanBnXkFtZTcwNzI3MDgxOQ@@._V1_SX300.jpg",
 		"imdbRating":"7.0",
 		"imdbID":"tt1483013"
+	},
+
+	{
+		"Title":"The Green Mile",
+		"Year":"1999",
+		"Genre":["Crime, Drama, Fantasy"],
+		"Director":"Frank Darabont",
+		"Actors":["Tom Hanks, David Morse, Michael Clarke Duncan, Bonnie Hunt"],
+		"Language":["English, French"],
+		"Country":"USA",
+		"Poster":"http://ia.media-imdb.com/images/M/MV5BMTUxMzQyNjA5MF5BMl5BanBnXkFtZTYwOTU2NTY3._V1_SX300.jpg",
+		"imdbRating":"8.5",
+		"imdbID":"tt0120689"
+	},
+
+	{
+		"Title":"The Lord of the Rings: The Fellowship of the Ring",
+		"Year":"2001",
+		"Genre":["Action, Adventure, Drama"],
+		"Director":"Peter Jackson",
+		"Actors":["Alan Howard, Noel Appleby, Sean Astin, Sala Baker"],
+		"Country":["New Zealand, USA"],
+		"Poster":"http://ia.media-imdb.com/images/M/MV5BNTEyMjAwMDU1OV5BMl5BanBnXkFtZTcwNDQyNTkxMw@@._V1_SX300.jpg",
+		"imdbRating":"8.8",
+		"imdbID":"tt0120737"
+	},
+
+	{
+		"Title":"The Lord of the Rings: The Two Towers",
+		"Year":"2002",
+		"Genre":["Action, Adventure, Drama"],
+		"Director":"Peter Jackson",
+		"Actors":["Bruce Allpress, Sean Astin, John Bach, Sala Baker"],
+		"Language":["English, Sindarin, Old English"],
+		"Country":["USA, New Zealand"],
+		"Poster":"http://ia.media-imdb.com/images/M/MV5BMTAyNDU0NjY4NTheQTJeQWpwZ15BbWU2MDk4MTY2Nw@@._V1_SX300.jpg",
+		"imdbRating":"8.7",
+		"imdbID":"tt0167261"
+	},
+
+	{
+		"Title":"The Lord of the Rings: The Return of the King",
+		"Year":"2003",
+		"Genre":["Action, Adventure, Drama"],
+		"Director":"Peter Jackson",
+		"Actors":["Noel Appleby, Ali Astin, Sean Astin, David Aston"],
+		"Language":["English, Quenya, Old English, Sindarin"],
+		"Country":["USA, New Zealand"],
+		"Poster":"http://ia.media-imdb.com/images/M/MV5BMjE4MjA1NTAyMV5BMl5BanBnXkFtZTcwNzM1NDQyMQ@@._V1_SX300.jpg",
+		"imdbRating":"8.9",
+		"imdbID":"tt0167260"
+	},
+
+	{
+		"Title":"The Avengers",
+		"Year":"2012",
+		"Genre":["Action, Adventure, Sci-Fi"],
+		"Director":"Joss Whedon",
+		"Actors":["Robert Downey Jr., Chris Evans, Mark Ruffalo, Chris Hemsworth"],
+		"Language":["English, Russian"],
+		"Country":"USA",
+		"Poster":"http://ia.media-imdb.com/images/M/MV5BMTk2NTI1MTU4N15BMl5BanBnXkFtZTcwODg0OTY0Nw@@._V1_SX300.jpg",
+		"imdbRating":"8.1",
+		"imdbID":"tt0848228"
+	},
+
+	{
+		"Title":"Iron Man",
+		"Year":"2008",
+		"Genre":["Action, Adventure, Sci-Fi"],
+		"Director":"Jon Favreau",
+		"Language":["English, Persian, Urdu, Arabic, Hungarian"],
+		"Country":"USA",
+		"Poster":"http://ia.media-imdb.com/images/M/MV5BMTczNTI2ODUwOF5BMl5BanBnXkFtZTcwMTU0NTIzMw@@._V1_SX300.jpg",
+		"imdbRating":"7.9",
+		"imdbID":"tt0371746"
+	},
+
+	{
+		"Title":"Batman Begins",
+		"Year":"2005",
+		"Genre":["Action, Adventure"],
+		"Director":"Christopher Nolan",
+		"Actors":["Christian Bale, Michael Caine, Liam Neeson, Katie Holmes"],
+		"Language":["English, Urdu, Mandarin"],
+		"Country":["USA, UK"],
+		"Poster":"http://ia.media-imdb.com/images/M/MV5BNTM3OTc0MzM2OV5BMl5BanBnXkFtZTYwNzUwMTI3._V1_SX300.jpg",
+		"imdbRating":"8.3",
+		"imdbID":"tt0372784"
+	},
+
+	{
+		"Title":"The Dark Knight",
+		"Year":"2008",
+		"Genre":["Action, Adventure, Crime"],
+		"Director":"Christopher Nolan",
+		"Actors":["Christian Bale, Heath Ledger, Aaron Eckhart, Michael Caine"],
+		"Language":["English, Mandarin"],
+		"Country":["USA, UK"],
+		"Poster":"http://ia.media-imdb.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg",
+		"imdbRating":"9.0",
+		"imdbID":"tt0468569"
+	},
+
+	{
+		"Title":"Alien",
+		"Year":"1979",
+		"Genre":["Horror, Sci-Fi"],
+		"Director":"Ridley Scott",
+		"Actors":["Tom Skerritt, Sigourney Weaver, Veronica Cartwright, Harry Dean Stanton"],
+		"Language":["English, Spanish"],
+		"Country":["UK, USA"],
+		"Poster":"http://ia.media-imdb.com/images/M/MV5BNDNhN2IxZWItNGEwYS00ZDNhLThiM2UtODU3NWJlZjBkYjQxXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
+		"imdbRating":"8.5",
+		"imdbID":"tt0078748"
+	},
+
+	{
+		"Title":"Prometheus",
+		"Year":"2012",
+		"Genre":["Adventure, Mystery, Sci-Fi"],
+		"Director":"Ridley Scott",
+		"Actors":["Noomi Rapace, Michael Fassbender, Charlize Theron, Idris Elba"],
+		"Language":["English, Scottish Gaelic"],
+		"Country":["USA, UK"],
+		"Poster":"http://ia.media-imdb.com/images/M/MV5BMTY3NzIyNTA2NV5BMl5BanBnXkFtZTcwNzE2NjI4Nw@@._V1_SX300.jpg",
+		"imdbRating":"7.0",
+		"imdbID":"tt1446714"
 	}
 ]

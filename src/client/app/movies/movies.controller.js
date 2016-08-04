@@ -10,7 +10,8 @@
   function MoviesController($q, dataservice, logger) {
     var vm = this;
 
-    // vm.customFilter = customFilter;
+    vm.currentPage = 1;
+    vm.pageSize = 8;
     vm.movies = [];
     vm.searchCriteria = {
       $: '',
@@ -30,12 +31,21 @@
       return $q.all(promises)
         .then(function() {
           logger.info('Activated Movies View');
+          console.log(vm.movies);
         });
     }
 
     function dates() {
+      var defer = $q.defer();
+
+      defer.resolve(dateResolver());
+      return defer.promise;
+    }
+
+    function dateResolver() {
       var from = 1950,
           to = 2016;
+
       for (var i = from; i < to; i++) {
         vm.releaseDates[i - from] = i;
       }
@@ -57,6 +67,8 @@
       } else {
           dataservice.getMovies().then(function(data) {
               vm.movies = data;
+          console.log(vm.movies);
+              
               return vm.movies;
           });
       }
