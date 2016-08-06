@@ -1,0 +1,10 @@
+<div ng-show="showMember" ng-controller="MembercardController as vm">
+  <div class="memberDetailBg" ng-click="vm.hideMember()">
+    <div class="memberDetail">
+      <h3>{{vm.member.firstName}} {{vm.member.lastName}}</h3>
+      <p>{{vm.member.registered | date:dd/MMM/yyyy}}</p>
+      <p>{{vm.member.phone}}</p>
+      <p>{{vm.member.email}}</p>
+    </div>
+  </div>
+</div>

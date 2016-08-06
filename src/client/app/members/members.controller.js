@@ -4,12 +4,15 @@
     angular.module('app.members')
         .controller('MembersController', MembersController);
 
-    MembersController.$inject = ['$q', 'dataservice', 'logger'];
+    MembersController.$inject = ['$q', '$rootScope', 'dataservice', 'logger'];
     
     /* @ngInject */
-    function MembersController($q, dataservice, logger) {
+    function MembersController($q, $rootScope, dataservice, logger) {
         var vm = this;
 
+        $rootScope.showMember = false;
+
+        vm.showMemberDetail = showMemberDetail;
         vm.currentPage = 1;
         vm.pageSize = 16;
         vm.title = 'Members';
@@ -69,6 +72,13 @@
                 vm.members = data;
                 return vm.members;
             });
+        }
+
+        function showMemberDetail(member) {
+            $rootScope.showMember = true;
+            dataservice.cache.put('memberIndex', vm.members.indexOf(member));
+
+            $rootScope.clickEvent();
         }
     }
 })();

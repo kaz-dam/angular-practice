@@ -84,7 +84,7 @@
                             <input class="pull-right" ng-model="vm.searchMembers" type="text" placeholder="Search..">
                         </div>
                         <div class="col-lg-12">
-                            <div class="col-lg-3 text-center" ng-repeat="m in vm.members | filter:vm.searchMembers | startFrom: (vm.currentPage-1)*vm.pageSize | limitTo: vm.pageSize">
+                            <div class="col-lg-3 text-center" ng-repeat="m in vm.members | filter:vm.searchMembers | startFrom: (vm.currentPage-1)*vm.pageSize | limitTo: vm.pageSize" ng-click="vm.showMemberDetail(m)">
                                 <member-card first-name="{{m.firstName}}"
                                              last-name="{{m.lastName}}"
                                              phone="{{m.phone}}"
