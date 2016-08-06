@@ -1,10 +1,27 @@
-<div ng-show="showMember" ng-controller="MembercardController as vm">
+<div class="memberContainer" ng-show="showMember" ng-controller="MembercardController as vm">
   <div class="memberDetailBg" ng-click="vm.hideMember()">
-    <div class="memberDetail">
-      <h3>{{vm.member.firstName}} {{vm.member.lastName}}</h3>
-      <p>{{vm.member.registered | date:dd/MMM/yyyy}}</p>
+    <div class="memberDetail" ng-click="$event.stopPropagation()">
+      <h2>{{vm.member.firstName}} {{vm.member.lastName}}</h2>
+      <p>{{vm.member.registered | date:'longDate'}}</p>
       <p>{{vm.member.phone}}</p>
-      <p>{{vm.member.email}}</p>
+      <a href="mailto:{{vm.member.email}}">{{vm.member.email}}</a>
+      <table class="table table-striped">
+      	<tr>
+      		<th class="text-center">Movie</th>
+      		<th class="text-center">Taken</th>
+      		<th class="text-center">Deadline</th>
+      	</tr>
+      	<tr ng-repeat="rm in vm.member.rentedMovies">
+      		<td class="text-center">{{rm}}</td>
+      		<td class="text-center"></td>
+      		<td class="text-center"></td>
+      	</tr>
+      </table>
+      <div class="addMovieContainer">
+      	<input type="text" ng-model="vm.movieSearch" ng-change="vm.searchMovies()">
+      	<div class="btn btn-default" ng-repeat="sm in vm.searchedMovies">{{sm.Title}}</div>
+      </div>
+      <div class="btn btn-primary" ng-click="vm.hideMember()">Close</div>
     </div>
   </div>
 </div>

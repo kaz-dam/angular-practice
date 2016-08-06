@@ -1969,6 +1969,10 @@ section.mainbar member-card a:hover h4 {
 
 /* member details */
 
+.memberContainer {
+    transition: all 0.8s ease-in-out;
+}
+
 .memberDetailBg {
     z-index: 99999;
     position: fixed;
@@ -1981,18 +1985,21 @@ section.mainbar member-card a:hover h4 {
     height: 100%;
     background-color: rgba(0,0,0,0.5);
     // opacity: 0.5;
-    transition: all 0.5s ease-in-out;
 }
 
 .memberDetail {
     // z-index: 100000;
-    max-width: 300px;
-    max-height: 300px;
+    width: 400px;
+    height: 400px;
     background-color: white;
-    // margin: 0 auto;
-    // justify-content: center;
-    // align-items: center;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.7);
     // opacity: 1;
+}
+
+.memberTable {
+    text-align: center;
 }
 
 /* movie cards */

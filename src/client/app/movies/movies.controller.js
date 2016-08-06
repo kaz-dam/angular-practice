@@ -67,8 +67,6 @@
       } else {
           dataservice.getMovies().then(function(data) {
               vm.movies = data;
-          console.log(vm.movies);
-              
               return vm.movies;
           });
       }
