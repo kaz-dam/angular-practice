@@ -33,42 +33,22 @@
         }
 
         function getMembers() {
-            var members = dataservice.cache.get('members');
-            var defer = $q.defer();
-
-            defer.resolve(membersResolver(members));
-            return defer.promise;
+            return dataservice.getPeople().then(function(data) {
+                vm.members = data;
+                return vm.members;
+            });
         }
 
         function onSubmit() {
-            setPeople()
+            var newPerson = vm.newPerson;
+            $q.when(dataservice.setPeople(newPerson))
                 .then(function() {
                     logger.info('New member saved');
                 });
         }
 
-        function setPeople() {
-            var defer = $q.defer();
-            var newPerson = vm.newPerson;
-
-            defer.resolve(dataservice.setPeople(newPerson));
-            return defer.promise;
-        }
-
-        function membersResolver(obj) {
-            if (obj) {
-                vm.members = obj;
-                return vm.members;
-            } else {
-                dataservice.getPeople().then(function(data) {
-                    vm.members = data;
-                    return vm.members;
-                });
-            }
-        }
-
         function updateCache() {
-            return dataservice.getPeople().then(function(data) {
+            return dataservice.getPeople(true).then(function(data) {
                 vm.members = data;
                 return vm.members;
             });

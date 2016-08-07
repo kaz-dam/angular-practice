@@ -17,11 +17,15 @@
       		<td class="text-center"></td>
       	</tr>
       </table>
-      <div class="addMovieContainer">
-      	<input type="text" ng-model="vm.movieSearch" ng-change="vm.searchMovies()">
-      	<div class="btn btn-default" ng-repeat="sm in vm.searchedMovies">{{sm.Title}}</div>
+      <div class="addMovieContainer center-block">
+      	<div class="form-group">
+      		<input class="form-control" placeholder="Add movies.." type="text" ng-model="vm.movieSearch" ng-change="vm.searchMovies()">
+      	</div>
+      	<div class="btn btn-default btn-block" ng-repeat="sm in vm.searchedMovies">{{sm.Title}}</div>
       </div>
-      <div class="btn btn-primary" ng-click="vm.hideMember()">Close</div>
+      <div class="form-group">
+      	<div class="btn btn-primary btn-sm" ng-click="vm.hideMember()">Close</div>
+      </div>
     </div>
   </div>
 </div>

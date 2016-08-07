@@ -31,7 +31,6 @@
       return $q.all(promises)
         .then(function() {
           logger.info('Activated Movies View');
-          console.log(vm.movies);
         });
     }
 
@@ -53,23 +52,10 @@
     }
 
     function getMovies() {
-      var movies = dataservice.cache.get('movies');
-      var defer = $q.defer();
-
-      defer.resolve(moviesResolver(movies));
-      return defer.promise;
-    }
-
-    function moviesResolver(obj) {
-      if (obj) {
-          vm.movies = obj;
+      return dataservice.getMovies().then(function(data) {
+          vm.movies = data;
           return vm.movies;
-      } else {
-          dataservice.getMovies().then(function(data) {
-              vm.movies = data;
-              return vm.movies;
-          });
-      }
+      });
     }
   }
 })();

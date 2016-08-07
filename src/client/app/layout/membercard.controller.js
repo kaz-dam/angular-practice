@@ -9,18 +9,29 @@
 	/* @ngInject */
 	function MembercardController($rootScope, $filter, dataservice) {
 		var vm = this;
-		var members = {};
+		var members = [];
+		var movies = [];
         
         $rootScope.clickEvent = clickEvent;
 
         vm.hideMember = hideMember;
         vm.member = {};
         vm.movieSearch = '';
-        vm.searchedMovies = []; // TODO function to iterate through the dataset
+        vm.searchedMovies = [];
         vm.searchMovies = searchMovies;
+
+        activate();
+
+        function activate() {
+        	dataservice.getMovies().then(function(data) {
+        		return movies = data;
+        	});
+        }
 
         function hideMember() {
             $rootScope.showMember = false;
+            vm.movieSearch = '';
+            vm.searchedMovies = [];
         }
 
         function clickEvent() {
@@ -32,14 +43,11 @@
         }
 
         function searchMovies() {
-        	var movies = dataservice.cache.get('movies'); // TODO movies Provider
-        	console.log(movies);
-        	// $timeout(function() {
-        	// 	for (var i = 0; i < movies.length; i++) {
-        	// 		var movie = movies[i];
-        	// 		if (movie.Title ) {}
-        	// 	}
-        	// }, 1000)
+        	if (vm.movieSearch) {
+        		vm.searchedMovies = $filter('NotRentedMovies')(movies, vm.movieSearch);
+        	} else {
+        		vm.searchedMovies = [];
+        	}
         }
 	}
 

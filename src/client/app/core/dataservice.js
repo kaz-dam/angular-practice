@@ -28,19 +28,27 @@
           .catch(fail);
     }
 
-    function getPeople() {
-      return $http.get('/api/people')
-        .then(success)
-        .catch(fail);
+    function getPeople(forceRefresh) {
+      if (cache.get('members') && !forceRefresh) {
+        return $q.when(cache.get('members'));
+      } else {
+        return $http.get('/api/people')
+          .then(success)
+          .catch(fail);
+      }
     }
 
     function getMovies() {
-      return $http.get('/api/movies')
+      if (cache.get('movies')) {
+        return $q.when(cache.get('movies'));
+      } else {
+        return $http.get('/api/movies')
         .then(function(res) {
           cache.put('movies', res.data)
           return res.data;
         })
         .catch(fail);
+      }
     }
 
     function success(response) {
