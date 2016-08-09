@@ -21,7 +21,7 @@
       	<div class="form-group">
       		<input class="form-control" placeholder="Add movies.." type="text" ng-model="vm.movieSearch" ng-change="vm.searchMovies()">
       	</div>
-      	<div class="btn btn-default btn-block" ng-repeat="sm in vm.searchedMovies">{{sm.Title}}</div>
+      	<div class="btn btn-default btn-block" ng-repeat="sm in vm.searchedMovies" ng-click="vm.addMovie(sm)">{{sm.Title}}</div>
       </div>
       <div class="form-group">
       	<div class="btn btn-primary btn-sm" ng-click="vm.hideMember()">Close</div>

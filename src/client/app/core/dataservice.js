@@ -16,6 +16,7 @@
       setPeople: setPeople,
       getMessageCount: getMessageCount,
       cache: cache
+      updateMember: updateMember
     };
 
     return service;
@@ -49,6 +50,17 @@
         })
         .catch(fail);
       }
+    }
+
+    function updateMember(addedMovies, memberId) {
+      var update = {
+        id: memberId,
+        movies: addedMovies
+      };
+      
+      $http.post('/api/updateMember', update)
+        .then()
+        .catch();
     }
 
     function success(response) {

@@ -8,6 +8,7 @@ var url = 'mongodb://localhost:27017/people';
 router.get('/people', getPeople);
 router.post('/setPeople', setPeople);
 router.get('/movies', getMovies);
+// router.post('/updateMember', updateMember);
 router.get('/person/:id', getPerson);
 router.get('/*', four0four.notFoundMiddleware);
 
@@ -76,4 +77,9 @@ function getPerson(req, res, next) {
   } else {
     four0four.send404(req, res, 'person ' + id + ' not found');
   }
+}
+
+function updateMember(req, res, next) {
+  var moviesToAdd = req.body;
+  mongo
 }

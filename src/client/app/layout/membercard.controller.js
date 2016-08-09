@@ -5,12 +5,13 @@
 		.module('app.layout')
 		.controller('MembercardController', MembercardController);
 
-	MembercardController.$inject = ['$rootScope', '$filter', 'dataservice'];
+	MembercardController.$inject = ['$rootScope', '$filter', 'dataservice', 'date'];
 	/* @ngInject */
-	function MembercardController($rootScope, $filter, dataservice) {
+	function MembercardController($rootScope, $filter, dataservice, date) {
 		var vm = this;
 		var members = [];
 		var movies = [];
+		var addedMovies = [];
         
         $rootScope.clickEvent = clickEvent;
 
@@ -19,6 +20,9 @@
         vm.movieSearch = '';
         vm.searchedMovies = [];
         vm.searchMovies = searchMovies;
+        vm.addMovie = addMovie;
+
+        // TODO date factory for assigning movie to a member
 
         activate();
 
@@ -28,10 +32,24 @@
         	});
         }
 
+        function addMovie(clickedMovie) {
+        	var nthMovie = {
+        		currentDate: date.currentDate(),
+        		titleToAdd: clickedMovie.Title
+        	};
+        	
+        	addedMovies.push(nthMovie);
+        }
+
         function hideMember() {
             $rootScope.showMember = false;
             vm.movieSearch = '';
             vm.searchedMovies = [];
+            // console.log(vm.member._id);
+            if (addedMovies) {
+            	dataservice.updateMember(addedMovies, vm.member._id);
+            	addedMovies = [];
+            }
         }
 
         function clickEvent() {

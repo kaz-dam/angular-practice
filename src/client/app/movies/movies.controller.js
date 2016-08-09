@@ -34,6 +34,7 @@
         });
     }
 
+    // TODO date factory
     function dates() {
       var defer = $q.defer();
 
