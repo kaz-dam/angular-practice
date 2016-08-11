@@ -21,8 +21,9 @@
         vm.searchedMovies = [];
         vm.searchMovies = searchMovies;
         vm.addMovie = addMovie;
-
-        // TODO date factory for assigning movie to a member
+        vm.delMovie = delMovie;
+        vm.movieCheck = false;
+        vm.enableDel = enableDel;
 
         activate();
 
@@ -34,19 +35,31 @@
 
         function addMovie(clickedMovie) {
         	var nthMovie = {
-        		currentDate: date.currentDate(),
-        		titleToAdd: clickedMovie.Title
+        		title: clickedMovie.Title,
+        		currentDate: date.currentDate()
         	};
         	
         	addedMovies.push(nthMovie);
+        }
+
+        function delMovie() {
+
+        }
+
+        function enableDel() {
+        	if (!vm.movieCheck) {
+        		vm.movieCheck = true;
+        	} else {
+        		vm.movieCheck = false;
+        	}
         }
 
         function hideMember() {
             $rootScope.showMember = false;
             vm.movieSearch = '';
             vm.searchedMovies = [];
-            // console.log(vm.member._id);
-            if (addedMovies) {
+
+            if (addedMovies.length) {
             	dataservice.updateMember(addedMovies, vm.member._id);
             	addedMovies = [];
             }

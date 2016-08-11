@@ -1,6 +1,7 @@
 var router = require('express').Router();
 var four0four = require('./utils/404')();
 var mongo = require('mongodb').MongoClient;
+var ObjectID = require('mongodb').ObjectID;
 var assert = require('assert');
 
 var url = 'mongodb://localhost:27017/people';
@@ -8,7 +9,7 @@ var url = 'mongodb://localhost:27017/people';
 router.get('/people', getPeople);
 router.post('/setPeople', setPeople);
 router.get('/movies', getMovies);
-// router.post('/updateMember', updateMember);
+router.post('/updateMember', updateMember);
 router.get('/person/:id', getPerson);
 router.get('/*', four0four.notFoundMiddleware);
 
@@ -80,6 +81,17 @@ function getPerson(req, res, next) {
 }
 
 function updateMember(req, res, next) {
-  var moviesToAdd = req.body;
-  mongo
+  var memberId = req.body.id,
+      movies = req.body.movies;
+
+  mongo.connect(url, function(err, db) {
+    assert.equal(null, err);
+    db.collection('members').updateOne({"_id": ObjectID(memberId)}, {$set: {"rentedMovies": movies}}, function(err, result) {
+      assert.equal(null, err);
+      console.log('Document updated');
+      db.close();
+    });
+
+    res.status(200).end();
+  });
 }

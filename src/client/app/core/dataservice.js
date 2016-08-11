@@ -15,7 +15,7 @@
       getMovies: getMovies,
       setPeople: setPeople,
       getMessageCount: getMessageCount,
-      cache: cache
+      cache: cache,
       updateMember: updateMember
     };
 
@@ -57,10 +57,13 @@
         id: memberId,
         movies: addedMovies
       };
-      
+      console.log(addedMovies);
+
       $http.post('/api/updateMember', update)
-        .then()
-        .catch();
+        .then(function(res) {
+          return res;
+        })
+        .catch(fail);
     }
 
     function success(response) {
