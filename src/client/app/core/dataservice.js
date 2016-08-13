@@ -16,7 +16,8 @@
       setPeople: setPeople,
       getMessageCount: getMessageCount,
       cache: cache,
-      updateMember: updateMember
+      updateMember: updateMember,
+      movieRented: movieRented
     };
 
     return service;
@@ -57,11 +58,31 @@
         id: memberId,
         movies: addedMovies
       };
-      console.log(addedMovies);
 
       $http.post('/api/updateMember', update)
         .then(function(res) {
           return res;
+        })
+        .catch(fail);
+    }
+
+    function movieRented(clickedMovieId, rented) {
+      var obj = {
+        id: clickedMovieId,
+        rented: rented
+      };
+
+      $http.post('/api/movieRented', obj)
+        .then(function(res) {
+          var movieCache = cache.get('movies');
+          console.log(movieCache);
+          for (var i = 0; i < movieCache.length; i++) {
+            if (movieCache[i]._id === res.data._id) {
+              movieCache[i] = res.data;
+              console.log(movieCache[i]);
+            }
+          }
+          cache.put('movies', movieCache);
         })
         .catch(fail);
     }

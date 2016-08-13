@@ -12,6 +12,8 @@
 		var members = [];
 		var movies = [];
 		var addedMovies = [];
+        var itemsToDel = [];
+        var delInDb = false;
         
         $rootScope.clickEvent = clickEvent;
 
@@ -22,7 +24,7 @@
         vm.searchMovies = searchMovies;
         vm.addMovie = addMovie;
         vm.delMovie = delMovie;
-        vm.movieCheck = false;
+        vm.toggleButton = false;
         vm.enableDel = enableDel;
 
         activate();
@@ -34,23 +36,52 @@
         }
 
         function addMovie(clickedMovie) {
+        	// clickedMovie.rented = true;
         	var nthMovie = {
         		title: clickedMovie.Title,
         		currentDate: date.currentDate()
         	};
-        	
         	addedMovies.push(nthMovie);
+        	dataservice.movieRented(clickedMovie._id, true);
         }
 
         function delMovie() {
+        	var counter = 0;
+        	var ids = [];
+        	console.log(vm.member.rentedMovies);
+        	console.log(itemsToDel.length);
 
+
+        	for (var i = 0; i < itemsToDel.length; i++) {	// <<-----TODO refactor
+        		if (itemsToDel[i]) {
+        			// ids.push(vm.member.rentedMovies[i].title);
+        			vm.member.rentedMovies.splice(i, 1);
+        			counter++;
+        		}
+        	}
+        	if (counter === itemsToDel.length) {
+        		vm.member.rentedMovies = [];
+        	}
+        	vm.toggleButton = false;
+        	delInDb = true;
+        	vm.checkbox = {};
         }
 
         function enableDel() {
-        	if (!vm.movieCheck) {
-        		vm.movieCheck = true;
+        	var counter = 0;
+        	itemsToDel = [];
+
+        	for (var i = 0; i < vm.member.rentedMovies.length; i++) {
+        		if (vm.checkbox[i]) {
+	        		counter++;
+	        	}
+        		itemsToDel.push(vm.checkbox[i]);
+        	}
+
+        	if (counter > 0) {
+        		vm.toggleButton = true;
         	} else {
-        		vm.movieCheck = false;
+        		vm.toggleButton = false;
         	}
         }
 
@@ -58,10 +89,14 @@
             $rootScope.showMember = false;
             vm.movieSearch = '';
             vm.searchedMovies = [];
+            vm.toggleButton = false;
+            vm.checkbox = {};
 
             if (addedMovies.length) {
             	dataservice.updateMember(addedMovies, vm.member._id);
             	addedMovies = [];
+            } else if (delInDb) {
+            	dataservice.updateMember(vm.member.rentedMovies, vm.member._id);
             }
         }
 

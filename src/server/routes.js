@@ -10,6 +10,7 @@ router.get('/people', getPeople);
 router.post('/setPeople', setPeople);
 router.get('/movies', getMovies);
 router.post('/updateMember', updateMember);
+router.post('/movieRented', movieRented);
 router.get('/person/:id', getPerson);
 router.get('/*', four0four.notFoundMiddleware);
 
@@ -93,5 +94,29 @@ function updateMember(req, res, next) {
     });
 
     res.status(200).end();
+  });
+}
+
+function movieRented(req, res, next) {
+  var clickedMovieId = req.body.id;
+  var rented = req.body.rented;
+  // var refreshed = [];
+  var updatedMovie = [];
+
+  mongo.connect(url, function(err, db) {
+    assert.equal(null, err);
+    db.collection('movies').updateOne({"_id": ObjectID(clickedMovieId)}, {$set: {"rented": rented}}, function(err, result) {
+      assert.equal(null, err);
+      var refreshed = db.collection('movies').find({"_id": ObjectID(clickedMovieId)});
+      // console.log('Field updated');
+      refreshed.forEach(function(doc, err) {
+        assert.equal(null, err);
+        updatedMovie.push(doc);
+      }, function() {
+        db.close();
+        console.log(updatedMovie);
+        res.status(200).send(updatedMovie);
+      });
+    });
   });
 }
