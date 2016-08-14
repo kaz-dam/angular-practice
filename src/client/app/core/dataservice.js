@@ -75,11 +75,12 @@
       $http.post('/api/movieRented', obj)
         .then(function(res) {
           var movieCache = cache.get('movies');
-          console.log(movieCache);
+          // console.log(movieCache);
           for (var i = 0; i < movieCache.length; i++) {
+            // console.log(movieCache[i]._id + res.data._id);
             if (movieCache[i]._id === res.data._id) {
               movieCache[i] = res.data;
-              console.log(movieCache[i]);
+              // console.log(movieCache[i]);
             }
           }
           cache.put('movies', movieCache);

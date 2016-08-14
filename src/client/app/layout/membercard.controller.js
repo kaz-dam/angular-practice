@@ -36,11 +36,11 @@
         }
 
         function addMovie(clickedMovie) {
-        	// clickedMovie.rented = true;
         	var nthMovie = {
         		title: clickedMovie.Title,
         		currentDate: date.currentDate()
         	};
+        	vm.isRented[vm.searchedMovies.indexOf(clickedMovie)] = true;
         	addedMovies.push(nthMovie);
         	dataservice.movieRented(clickedMovie._id, true);
         }
@@ -48,7 +48,8 @@
         function delMovie() {
         	var counter = 0;
         	var ids = [];
-        	console.log(vm.member.rentedMovies);
+        	console.log(itemsToDel);
+        	console.log(vm.member);
         	console.log(itemsToDel.length);
 
 
@@ -109,6 +110,7 @@
         }
 
         function searchMovies() {
+        	vm.isRented = [];
         	if (vm.movieSearch) {
         		vm.searchedMovies = $filter('NotRentedMovies')(movies, vm.movieSearch);
         	} else {

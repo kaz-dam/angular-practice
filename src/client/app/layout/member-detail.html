@@ -23,7 +23,11 @@
       	<div class="form-group">
       		<input class="form-control" placeholder="Add movies.." type="text" ng-model="vm.movieSearch" ng-change="vm.searchMovies()">
       	</div>
-      	<div class="btn btn-default btn-block" ng-disabled="!sm.rented" ng-repeat="sm in vm.searchedMovies" ng-click="vm.addMovie(sm)">{{sm.Title}}</div>
+      	<div class="btn btn-default btn-block"
+      		ng-model="vm.isRented[vm.searchedMovies.indexOf(sm)]"
+      		ng-disabled="sm.rented || vm.isRented[vm.searchedMovies.indexOf(sm)]"
+      		ng-repeat="sm in vm.searchedMovies"
+      		ng-click="vm.addMovie(sm)">{{sm.Title}}</div>
       </div>
       <div class="form-group">
       	<div class="btn btn-danger btn-sm" ng-disabled="!vm.toggleButton" ng-click="vm.delMovie()">Delete Movies</div>

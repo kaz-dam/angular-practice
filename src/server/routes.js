@@ -100,23 +100,17 @@ function updateMember(req, res, next) {
 function movieRented(req, res, next) {
   var clickedMovieId = req.body.id;
   var rented = req.body.rented;
-  // var refreshed = [];
-  var updatedMovie = [];
 
   mongo.connect(url, function(err, db) {
     assert.equal(null, err);
     db.collection('movies').updateOne({"_id": ObjectID(clickedMovieId)}, {$set: {"rented": rented}}, function(err, result) {
       assert.equal(null, err);
-      var refreshed = db.collection('movies').find({"_id": ObjectID(clickedMovieId)});
-      // console.log('Field updated');
-      refreshed.forEach(function(doc, err) {
-        assert.equal(null, err);
-        updatedMovie.push(doc);
-      }, function() {
+      db.collection('movies').findOne({"_id": ObjectID(clickedMovieId)}, function(err, item) {
         db.close();
-        console.log(updatedMovie);
-        res.status(200).send(updatedMovie);
+        console.log(item);
+        res.status(200).send(item);
       });
+      console.log('Field updated');
     });
   });
 }
