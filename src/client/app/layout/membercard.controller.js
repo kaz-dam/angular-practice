@@ -37,6 +37,7 @@
 
         function addMovie(clickedMovie) {
         	var nthMovie = {
+        		id: clickedMovie._id,
         		title: clickedMovie.Title,
         		currentDate: date.currentDate()
         	};
@@ -47,15 +48,11 @@
 
         function delMovie() {
         	var counter = 0;
-        	var ids = [];
-        	console.log(itemsToDel);
-        	console.log(vm.member);
-        	console.log(itemsToDel.length);
-
+        	var notMoreRented = [];
 
         	for (var i = 0; i < itemsToDel.length; i++) {	// <<-----TODO refactor
         		if (itemsToDel[i]) {
-        			// ids.push(vm.member.rentedMovies[i].title);
+        			notMoreRented.push(vm.member.rentedMovies[i].id); // <<----- TODO only the first item defined in rentedMovies
         			vm.member.rentedMovies.splice(i, 1);
         			counter++;
         		}
@@ -63,6 +60,7 @@
         	if (counter === itemsToDel.length) {
         		vm.member.rentedMovies = [];
         	}
+        	dataservice.movieRented(notMoreRented, false);
         	vm.toggleButton = false;
         	delInDb = true;
         	vm.checkbox = {};
