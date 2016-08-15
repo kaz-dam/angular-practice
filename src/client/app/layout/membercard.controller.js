@@ -53,7 +53,10 @@
         	for (var i = 0; i < itemsToDel.length; i++) {	// <<-----TODO refactor
         		if (itemsToDel[i]) {
         			notMoreRented.push(vm.member.rentedMovies[i].id); // <<----- TODO only the first item defined in rentedMovies
-        			vm.member.rentedMovies.splice(i, 1);
+        			console.log(notMoreRented);
+        			// vm.member.rentedMovies.splice(i, 1);
+
+        			delete vm.member.rentedMovies[i]; // <<--- TODO empty array item
         			counter++;
         		}
         	}
