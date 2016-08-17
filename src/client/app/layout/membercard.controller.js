@@ -50,20 +50,25 @@
         	var counter = 0;
         	var notMoreRented = [];
 
-        	for (var i = 0; i < itemsToDel.length; i++) {	// <<-----TODO refactor
-        		if (itemsToDel[i]) {
-        			notMoreRented.push(vm.member.rentedMovies[i].id); // <<----- TODO only the first item defined in rentedMovies
-        			console.log(notMoreRented);
-        			// vm.member.rentedMovies.splice(i, 1);
+        	if (itemsToDel.length > 1) {
+        		itemsToDel.forEach(function(item, index) {
+	        		if (item) {
+	        			notMoreRented.push(vm.member.rentedMovies[index].id);
+	        			console.log(notMoreRented);
+	        			// vm.member.rentedMovies.splice(index, 1);
 
-        			delete vm.member.rentedMovies[i]; // <<--- TODO empty array item
-        			counter++;
-        		}
-        	}
-        	if (counter === itemsToDel.length) {
+	        			delete vm.member.rentedMovies[index]; // TODO --> duplicate in ngRepeat
+	        		}
+	        	});
+	        	dataservice.movieRented(notMoreRented, false);
+        	} else {
+        		dataservice.movieRented(vm.member.rentedMovies[0].id, false);
         		vm.member.rentedMovies = [];
         	}
-        	dataservice.movieRented(notMoreRented, false);
+        	// if (counter === itemsToDel.length) {
+        	// 	vm.member.rentedMovies = [];
+        	// }
+        	// dataservice.movieRented(notMoreRented, false);
         	vm.toggleButton = false;
         	delInDb = true;
         	vm.checkbox = {};

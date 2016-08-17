@@ -75,9 +75,21 @@
       $http.post('/api/movieRented', obj)
         .then(function(res) {
           var movieCache = cache.get('movies');
-          for (var i = 0; i < movieCache.length; i++) {
-            if (movieCache[i]._id === res.data._id) {
-              movieCache[i] = res.data;
+          console.log(res.data.length);
+
+          if (res.data.length) {
+            res.data.forEach(function(item) {
+              for (var i = 0; i < movieCache.length; i++) {
+                if (movieCache[i]._id === item._id) {
+                  movieCache[i] = item;
+                }
+              }
+            });
+          } else {
+            for (var i = 0; i < movieCache.length; i++) {
+              if (movieCache[i]._id === res.data._id) {
+                movieCache[i] = res.data;
+              }
             }
           }
           cache.put('movies', movieCache);

@@ -13,6 +13,7 @@ module.exports = function(req, res, next) {
       people.push(doc);
     }, function() {
       db.close();
+      // console.log('from inside getPeople');
       res.status(200).send(people);
     });
   });
