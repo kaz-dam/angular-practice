@@ -47,28 +47,29 @@
         }
 
         function delMovie() {
-        	var counter = 0;
         	var notMoreRented = [];
+        	var keepAsRented = [];
 
         	if (itemsToDel.length > 1) {
         		itemsToDel.forEach(function(item, index) {
 	        		if (item) {
 	        			notMoreRented.push(vm.member.rentedMovies[index].id);
-	        			console.log(notMoreRented);
-	        			// vm.member.rentedMovies.splice(index, 1);
-
-	        			delete vm.member.rentedMovies[index]; // TODO --> duplicate in ngRepeat
+	        			console.log('inside not more rented');
+	        		} else {
+	        			keepAsRented.push(vm.member.rentedMovies[index]);
+	        			console.log('inside keep as rented');
 	        		}
 	        	});
+	        	if (keepAsRented) {
+	        		vm.member.rentedMovies = keepAsRented;
+	        	} else {
+	        		vm.member.rentedMovies = [];
+	        	}
 	        	dataservice.movieRented(notMoreRented, false);
         	} else {
         		dataservice.movieRented(vm.member.rentedMovies[0].id, false);
         		vm.member.rentedMovies = [];
         	}
-        	// if (counter === itemsToDel.length) {
-        	// 	vm.member.rentedMovies = [];
-        	// }
-        	// dataservice.movieRented(notMoreRented, false);
         	vm.toggleButton = false;
         	delInDb = true;
         	vm.checkbox = {};
