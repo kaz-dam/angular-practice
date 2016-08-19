@@ -31,7 +31,7 @@
                   <select name="dates" id="dates"
                           ng-model="vm.searchCriteria.Year"
                           ng-options="date for date in vm.releaseDates"> <!-- TODO: after deselecting year, movies disappear -->
-                    <option value=""></option>
+                    <option value="">Year</option>
                   </select>
                   <span>{{vm.searchCriteria.Year}}</span>
                 </div>
@@ -43,7 +43,8 @@
               <div class="col-lg-3 col-md-4 col-sm-6 text-center" ng-repeat="m in vm.movies | filter:vm.searchCriteria | startFrom: (vm.currentPage-1)*vm.pageSize | limitTo: vm.pageSize">
                 <movie-card title="{{m.Title}}"
                             year="{{m.Year}}"
-                            poster="{{m.Poster}}">
+                            poster="{{m.Poster}}"
+                            ng-click="vm.showMovieDetail(m)">
                 </movie-card>
               </div>
             </div>

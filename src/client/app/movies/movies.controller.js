@@ -5,10 +5,12 @@
     .module('app.movies')
     .controller('MoviesController', MoviesController);
 
-  MoviesController.$inject = ['$q', 'dataservice', 'logger'];
+  MoviesController.$inject = ['$q', '$rootScope', 'dataservice', 'logger', 'date'];
   /* @ngInject */
-  function MoviesController($q, dataservice, logger) {
+  function MoviesController($q, $rootScope, dataservice, logger, date) {
     var vm = this;
+
+    $rootScope.showMovie = false;
 
     vm.currentPage = 1;
     vm.pageSize = 8;
@@ -34,7 +36,6 @@
         });
     }
 
-    // TODO date factory
     function dates() {
       var defer = $q.defer();
 
@@ -44,9 +45,9 @@
 
     function dateResolver() {
       var from = 1950,
-          to = 2016;
+          to = date.currentDate().getFullYear();
 
-      for (var i = from; i < to; i++) {
+      for (var i = from; i <= to; i++) {
         vm.releaseDates[i - from] = i;
       }
       return vm.releaseDates;
@@ -57,6 +58,11 @@
           vm.movies = data;
           return vm.movies;
       });
+    }
+
+    function showMovieDetail(movie) {
+      $rootScope.showMovie = true;
+
     }
   }
 })();
