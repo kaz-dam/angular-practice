@@ -75,7 +75,6 @@
       $http.post('/api/movieRented', obj)
         .then(function(res) {
           var movieCache = cache.get('movies');
-          console.log(res.data.length);
 
           if (res.data.length) {
             res.data.forEach(function(item) {

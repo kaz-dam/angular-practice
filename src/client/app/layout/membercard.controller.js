@@ -50,26 +50,17 @@
         	var notMoreRented = [];
         	var keepAsRented = [];
 
-        	if (itemsToDel.length > 1) {
-        		itemsToDel.forEach(function(item, index) {
-	        		if (item) {
-	        			notMoreRented.push(vm.member.rentedMovies[index].id);
-	        			console.log('inside not more rented');
-	        		} else {
-	        			keepAsRented.push(vm.member.rentedMovies[index]);
-	        			console.log('inside keep as rented');
-	        		}
-	        	});
-	        	if (keepAsRented) {
-	        		vm.member.rentedMovies = keepAsRented;
-	        	} else {
-	        		vm.member.rentedMovies = [];
-	        	}
-	        	dataservice.movieRented(notMoreRented, false);
-        	} else {
-        		dataservice.movieRented(vm.member.rentedMovies[0].id, false);
-        		vm.member.rentedMovies = [];
-        	}
+    		itemsToDel.forEach(function(item, index) {
+        		if (item) {
+        			notMoreRented.push(vm.member.rentedMovies[index].id);
+        			console.log('inside not more rented');
+        		} else {
+        			keepAsRented.push(vm.member.rentedMovies[index]);
+        			console.log('inside keep as rented');
+        		}
+        	});
+        	vm.member.rentedMovies = keepAsRented;
+        	dataservice.movieRented(notMoreRented, false);
         	vm.toggleButton = false;
         	delInDb = true;
         	vm.checkbox = {};
