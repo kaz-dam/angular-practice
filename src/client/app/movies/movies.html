@@ -40,11 +40,10 @@
           </div>
           <div class="well">
             <div class="row">
-              <div class="col-lg-3 col-md-4 col-sm-6 text-center" ng-repeat="m in vm.movies | filter:vm.searchCriteria | startFrom: (vm.currentPage-1)*vm.pageSize | limitTo: vm.pageSize">
+              <div class="col-lg-3 col-md-4 col-sm-6 text-center" ng-click="vm.showMovieDetail(m)" ng-repeat="m in vm.movies | filter:vm.searchCriteria | startFrom: (vm.currentPage-1)*vm.pageSize | limitTo: vm.pageSize">
                 <movie-card title="{{m.Title}}"
                             year="{{m.Year}}"
-                            poster="{{m.Poster}}"
-                            ng-click="vm.showMovieDetail(m)">
+                            poster="{{m.Poster}}">
                 </movie-card>
               </div>
             </div>

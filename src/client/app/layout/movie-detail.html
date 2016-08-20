@@ -1,13 +1,18 @@
 <div class="memberContainer" ng-show="showMovie" ng-controller="MoviecardController as vm">
   <div class="memberDetailBg" ng-click="vm.hideMovie()"> <!-- TODO -->
     <div class="memberDetail" ng-click="$event.stopPropagation()">
-      <h2>{{vm.member.firstName}} {{vm.member.lastName}}</h2>
-      <p>{{vm.member.registered | date:'longDate'}}</p>
-      <p>{{vm.member.phone}}</p>
-      <a href="mailto:{{vm.member.email}}">{{vm.member.email}}</a>
-      
+      <h2>{{vm.movie.Title}}</h2>
+      <p>{{vm.movie.Year}}</p>
+      <span ng-repeat="g in vm.movie.Genre">
+        {{g}}
+      </span>
+      <p>{{vm.movie.Director}}</p>
+      <span ng-repeat="a in vm.movie.Actors">{{a}}</span>
+      <div>
+        <a href="http://www.imdb.com/title/{{vm.movie.imdbID}}">{{vm.movie.imdbRating}}</a>
+      </div>
       <div class="form-group">
-      	<div class="btn btn-primary btn-sm" ng-click="vm.hideMember()">Close</div>
+      	<div class="btn btn-primary btn-sm" ng-click="vm.hideMovie()">Close</div>
       </div>
     </div>
   </div>
