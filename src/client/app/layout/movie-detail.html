@@ -1,15 +1,34 @@
 <div class="memberContainer" ng-show="showMovie" ng-controller="MoviecardController as vm">
-  <div class="memberDetailBg" ng-click="vm.hideMovie()"> <!-- TODO -->
+  <div class="memberDetailBg" ng-click="vm.hideMovie()">
     <div class="memberDetail" ng-click="$event.stopPropagation()">
       <h2>{{vm.movie.Title}}</h2>
-      <p>{{vm.movie.Year}}</p>
-      <span ng-repeat="g in vm.movie.Genre">
-        {{g}}
-      </span>
-      <p>{{vm.movie.Director}}</p>
-      <span ng-repeat="a in vm.movie.Actors">{{a}}</span>
-      <div>
-        <a href="http://www.imdb.com/title/{{vm.movie.imdbID}}">{{vm.movie.imdbRating}}</a>
+      <h3>{{vm.movie.Year}}</h3>
+      <div class="col-md-4 movie-pic">
+        <img src="{{vm.movie.Poster}}" alt="{{vm.movie.Title}}">
+      </div>
+      <div class="col-md-8">
+        <table class="table table-striped">
+          <tr>
+            <td>Genre:</td>
+            <td><span ng-repeat="g in vm.movie.Genre">{{g}}<br></span></td>
+          </tr>
+          <tr>
+            <td>Director:</td>
+            <td>{{vm.movie.Director}}</td>
+          </tr>
+          <tr>
+            <td>Actors:</td>
+            <td><span ng-repeat="a in vm.movie.Actors"> {{a}}<br></span></td>
+          </tr>
+          <tr>
+            <td>Imdb rating:</td>
+            <td><a href="http://www.imdb.com/title/{{vm.movie.imdbID}}" target="_blank">{{vm.movie.imdbRating}}</a></td>
+          </tr>
+          <tr ng-class="{'success': !vm.movie.rented, 'danger': vm.movie.rented}">
+            <td>Available:</td>
+            <td>{{!vm.movie.rented ? 'Yes' : 'No'}}</td>
+          </tr>
+        </table>
       </div>
       <div class="form-group">
       	<div class="btn btn-primary btn-sm" ng-click="vm.hideMovie()">Close</div>
