@@ -5,53 +5,51 @@
     .module('app.dashboard')
     .controller('DashboardController', DashboardController);
 
-  DashboardController.$inject = ['$q', 'dataservice', 'logger'];
+  DashboardController.$inject = ['$q', 'dataservice', 'logger', 'date'];
   /* @ngInject */
-  function DashboardController($q, dataservice, logger) {
+  function DashboardController($q, dataservice, logger, date) {
     var vm = this;
+    var movies = [];
     vm.news = {
       title: 'Rental time counter',
       description: 'Movies that need to be brought back within an hour'
     };
-    vm.messageCount = 0;
+    vm.movieCount = 0;
     vm.people = [];
     vm.title = 'Dashboard';
+    vm.currentDate = date.currentDate();
 
     activate();
 
     function activate() {
-      var promises = [getMessageCount(), getPeople()];
+      var promises = [getMovies(), getPeople()];
       return $q.all(promises).then(function() {
+        getMovieCount();
         logger.info('Activated Dashboard View');
       });
     }
 
-    // TODO Number of rented movies
-    function getMessageCount() {
-      return dataservice.getMessageCount().then(function(data) {
-        vm.messageCount = data;
-        return vm.messageCount;
+    function getMovies() {
+      return dataservice.getMovies().then(function(data) {
+        movies = data;
+        return movies;
       });
     }
 
     function getPeople() {
-      var members = dataservice.cache.get('members');
-      var defer = $q.defer();
-
-      defer.resolve(membersResolver(members));
-      return defer.promise;
+      return dataservice.getPeople().then(function(data) {
+          vm.people = data;
+          return vm.people;
+      });
     }
 
-    function membersResolver(obj) {
-      if (obj) {
-          vm.people = obj;
-          return vm.people;
-      } else {
-          dataservice.getPeople().then(function(data) {
-              vm.people = data;
-              return vm.people;
-          });
+    function getMovieCount() {
+      for (var i = 0; i < movies.length; i++) {
+        if (movies[i].rented) {
+          vm.movieCount++;
+        }
       }
+      return vm.movieCount;
     }
   }
 })();

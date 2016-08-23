@@ -14,15 +14,12 @@
       getPeople: getPeople,
       getMovies: getMovies,
       setPeople: setPeople,
-      getMessageCount: getMessageCount,
       cache: cache,
       updateMember: updateMember,
       movieRented: movieRented
     };
 
     return service;
-
-    function getMessageCount() { return $q.when(72); }
 
     function setPeople(data) {
       $http.post('/api/setPeople', data)

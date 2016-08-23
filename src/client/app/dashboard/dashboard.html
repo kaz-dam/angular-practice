@@ -7,7 +7,7 @@
             <li class="blightblue">
               <div class="pull-left"><i class="fa fa-calendar"></i></div>
               <div class="datas-text pull-right">
-                <span class="bold">May 18, 2015</span> Current Date
+                <span class="bold">{{vm.currentDate | date:mediumDate}}</span> Current Date
               </div>
               <div class="clearfix"></div>
             </li>
@@ -15,7 +15,7 @@
             <li class="borange">
               <div class="pull-left"><i class="fa fa-film"></i></div>
               <div class="datas-text pull-right">
-                <span class="bold">{{vm.messageCount}}</span> Movies rented
+                <span class="bold">{{vm.movieCount}}</span> Movies rented
               </div>
               <div class="clearfix"></div>
             </li>
@@ -41,7 +41,7 @@
                   <tr ng-repeat="p in vm.people | rentFilter">
                     <td>{{p.firstName}}</td>
                     <td>{{p.lastName}}</td>
-                    <td>{{p.email}}</td>
+                    <td><a href="emailto:{{p.email}}">{{p.email}}</a></td>
                     <td>{{p.rentedMovies.length}}</td>
                   </tr>
                 </tbody>

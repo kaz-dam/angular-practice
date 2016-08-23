@@ -63,7 +63,6 @@
 
     function showMovieDetail(movie) {
       $rootScope.showMovie = true;
-      console.log(movie);
       dataservice.cache.put('movieIndex', vm.movies.indexOf(movie));
 
       $rootScope.movieClicked();
