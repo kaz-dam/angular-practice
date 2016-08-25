@@ -13,7 +13,6 @@
 			restrict: 'EA',
 			scope: {
 				title: '@',
-				year: '@',
 				poster: '@'
 			},
 			templateUrl: 'app/layout/movie-card.html'

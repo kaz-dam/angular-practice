@@ -36,10 +36,12 @@
         }
 
         function addMovie(clickedMovie) {
+            var currentDate = date.currentDate();
         	var nthMovie = {
         		id: clickedMovie._id,
         		title: clickedMovie.Title,
-        		currentDate: date.currentDate()
+        		currentDate: currentDate,
+                deadLine: currentDate.getTime() + 86400000
         	};
         	vm.isRented[vm.searchedMovies.indexOf(clickedMovie)] = true;
         	addedMovies.push(nthMovie);
