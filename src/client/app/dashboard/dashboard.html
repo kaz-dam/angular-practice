@@ -38,7 +38,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr ng-repeat="p in vm.people | rentFilter">
+                  <tr ng-repeat="p in vm.membersWithMovies">
                     <td>{{p.firstName}}</td>
                     <td>{{p.lastName}}</td>
                     <td><a href="emailto:{{p.email}}">{{p.email}}</a></td>
@@ -56,6 +56,14 @@
           <div class="widget wgreen">
             <div ht-widget-header title="{{vm.news.title}}" allow-collapse="true"></div>
             <div class="widget-content text-center text-info">
+              <table class="table table-condensed table-striped">
+                <tbody>
+                  <tr ng-repeat="m in vm.rentedMovieObjects" ng-class="{'warning': vm.warning, 'danger': vm.alert}">
+                    <td>{{m.title}}</td>
+                    <td ng-bind="vm.timeDistinction[vm.rentedMovieObjects.indexOf(m)]"></td>
+                  </tr>
+                </tbody>
+              </table>
               <small>{{vm.news.description}}</small>
             </div>
             <div class="widget-foot">

@@ -5,19 +5,25 @@
     .module('app.dashboard')
     .controller('DashboardController', DashboardController);
 
-  DashboardController.$inject = ['$q', 'dataservice', 'logger', 'date'];
+  DashboardController.$inject = ['$q','$filter', 'dataservice', 'logger', 'date', 'timer'];
   /* @ngInject */
-  function DashboardController($q, dataservice, logger, date) {
+  function DashboardController($q, $filter, dataservice, logger, date, timer) {
     var vm = this;
     var movies = [];
+    var currentDate = date.currentDate();
+
     vm.news = {
       title: 'Rental time counter',
       description: 'Movies that need to be brought back within an hour'
     };
     vm.movieCount = 0;
-    vm.people = [];
+    vm.membersWithMovies = [];
+    vm.rentedMovieObjects = [];
     vm.title = 'Dashboard';
-    vm.currentDate = date.currentDate();
+    vm.currentDate = currentDate;
+    vm.timeDistinction = [];
+    vm.warning = false;
+    vm.alert = false;
 
     activate();
 
@@ -25,7 +31,10 @@
       var promises = [getMovies(), getPeople()];
       return $q.all(promises).then(function() {
         getMovieCount();
+        getRentedMovieObjects();
+        getTimer();
         logger.info('Activated Dashboard View');
+        console.log(vm.membersWithMovies);
       });
     }
 
@@ -38,8 +47,8 @@
 
     function getPeople() {
       return dataservice.getPeople().then(function(data) {
-          vm.people = data;
-          return vm.people;
+          vm.membersWithMovies = $filter('rentFilter')(data);
+          return vm.membersWithMovies;
       });
     }
 
@@ -50,6 +59,22 @@
         }
       }
       return vm.movieCount;
+    }
+
+    function getRentedMovieObjects() {
+      vm.membersWithMovies.forEach(function(data) {
+        for (var i = 0; i < data.rentedMovies.length; i++) {
+          vm.rentedMovieObjects.push(data.rentedMovies[i]);
+        }
+      });
+    }
+
+    function getTimer() {
+      var currentTime = currentDate.getTime();
+      for (var i = 0; i < vm.rentedMovieObjects.length; i++) {
+        vm.timeDistinction.push(vm.rentedMovieObjects[i].deadLine - currentTime);
+      }
+      timer.getTimer(vm.timeDistinction);
     }
   }
 })();
