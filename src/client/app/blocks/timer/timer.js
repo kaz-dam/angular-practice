@@ -25,13 +25,6 @@
 		        	} else {
 		        		getTimeObj[i] = getTimeObj[i] - 1000;
 		        	}
-
-		        	if (getTimeObj[i] <= 3600000) {
-		        		vm.warning = true;
-		        	} else if (getTimeObj[i] <= 1800000) {
-		        		vm.warning = false;
-		        		vm.alert = true;
-		        	}
 		        }
 		    }, 1000);
 		}

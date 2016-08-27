@@ -73,6 +73,18 @@
       var currentTime = currentDate.getTime();
       for (var i = 0; i < vm.rentedMovieObjects.length; i++) {
         vm.timeDistinction.push(vm.rentedMovieObjects[i].deadLine - currentTime);
+
+        if (vm.timeDistinction[i] <= 3600000 && vm.timeDistinction[i] >= 1800000) {
+          vm.warning = true;
+        } else {
+          if (vm.timeDistinction[i] >= 3600000) {
+            vm.warning = false;
+            vm.alert = false;
+          } else {
+            vm.warning = false;
+            vm.alert = true;
+          }
+        }
       }
       timer.getTimer(vm.timeDistinction);
     }
