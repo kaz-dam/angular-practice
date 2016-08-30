@@ -60,11 +60,10 @@
                 <tbody>
                   <tr ng-repeat="m in vm.rentedMovieObjects" ng-class="{'warning': vm.warning, 'danger': vm.alert}">
                     <td>{{m.title}}</td>
-                    <td ng-bind="vm.timeDistinction[vm.rentedMovieObjects.indexOf(m)]"></td>
+                    <td ng-bind="vm.timerView[vm.rentedMovieObjects.indexOf(m)]"></td>
                   </tr>
                 </tbody>
               </table>
-              <small>{{vm.news.description}}</small>
             </div>
             <div class="widget-foot">
               <div class="clearfix"></div>

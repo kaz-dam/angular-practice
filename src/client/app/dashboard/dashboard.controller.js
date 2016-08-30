@@ -5,12 +5,13 @@
     .module('app.dashboard')
     .controller('DashboardController', DashboardController);
 
-  DashboardController.$inject = ['$q','$filter', 'dataservice', 'logger', 'date', 'timer'];
+  DashboardController.$inject = ['$q','$filter', '$interval', 'dataservice', 'logger', 'date', 'timer'];
   /* @ngInject */
-  function DashboardController($q, $filter, dataservice, logger, date, timer) {
+  function DashboardController($q, $filter, $interval, dataservice, logger, date, timer) {
     var vm = this;
     var movies = [];
     var currentDate = date.currentDate();
+    var timerPromise = [];
 
     vm.news = {
       title: 'Rental time counter',
@@ -22,6 +23,7 @@
     vm.title = 'Dashboard';
     vm.currentDate = currentDate;
     vm.timeDistinction = [];
+    vm.timerView = [];
     vm.warning = false;
     vm.alert = false;
 
@@ -32,9 +34,8 @@
       return $q.all(promises).then(function() {
         getMovieCount();
         getRentedMovieObjects();
-        getTimer();
+        getTimerObj();
         logger.info('Activated Dashboard View');
-        console.log(vm.membersWithMovies);
       });
     }
 
@@ -63,21 +64,40 @@
 
     function getRentedMovieObjects() {
       vm.membersWithMovies.forEach(function(data) {
+
+        // for (var i = 0; i < vm.rentedMovieObjects.length; i++) {
+
+        //   var id = vm.rentedMovieObjects[i].id;
+
+        //   for (var i = 0; i < data.rentedMovies.length; i++) {
+        //     if (id !=== data.rentedMovies[i].id) {
+        //       vm.rentedMovieObjects.push(data.rentedMovies[i]);
+        //     }
+        //   }
+          
+        // }
         for (var i = 0; i < data.rentedMovies.length; i++) {
           vm.rentedMovieObjects.push(data.rentedMovies[i]);
         }
       });
     }
 
-    function getTimer() {
+    function getTimerObj() {
       var currentTime = currentDate.getTime();
       for (var i = 0; i < vm.rentedMovieObjects.length; i++) {
-        vm.timeDistinction.push(vm.rentedMovieObjects[i].deadLine - currentTime);
+        // vm.timeDistinction.push(Math.ceil((vm.rentedMovieObjects[i].deadLine - currentTime) / 1000));
+        var isoToJsDate = +new Date(vm.rentedMovieObjects[i].currentDate);
 
-        if (vm.timeDistinction[i] <= 3600000 && vm.timeDistinction[i] >= 1800000) {
+        // console.log(vm.rentedMovieObjects[i].currentDate);
+        vm.timeDistinction.push(Math.ceil(
+          ( vm.rentedMovieObjects[i].deadLine - 
+            (currentTime - isoToJsDate)
+            ) / 1000));
+
+        if (vm.timeDistinction[i] <= 3600 && vm.timeDistinction[i] >= 1800) {
           vm.warning = true;
         } else {
-          if (vm.timeDistinction[i] >= 3600000) {
+          if (vm.timeDistinction[i] >= 3600) {
             vm.warning = false;
             vm.alert = false;
           } else {
@@ -86,7 +106,25 @@
           }
         }
       }
-      timer.getTimer(vm.timeDistinction);
+        $interval(function() {
+          for (var i = 0; i < vm.timeDistinction.length; i++) {
+            if (vm.timeDistinction[i] <= 0) {
+                vm.timeDistinction[i] = 0;
+            } else {
+              vm.timeDistinction[i] = vm.timeDistinction[i] - 1;
+              var hour = Math.ceil(vm.timeDistinction[i] / 60 / 60);
+              var minute = Math.ceil(vm.timeDistinction[i] / 60 % 60);
+              var second = Math.ceil(vm.timeDistinction[i] % 60);
+
+              vm.timerView[i] = hour + ' Hours, ' + minute + ' Minutes, ' + second + ' Seconds';
+              // return returnedObjs;
+              // console.log(vm);
+            }
+          }
+        }, 1000);
+        // vm.timer = timer.getTimer(i, vm.timeDistinction);
+        // var format = timer.getTimer(vm.timeDistinction, i);
+        // vm.timer.push(format);
     }
   }
 })();

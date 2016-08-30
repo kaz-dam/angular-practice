@@ -41,7 +41,7 @@
         		id: clickedMovie._id,
         		title: clickedMovie.Title,
         		currentDate: currentDate,
-                deadLine: currentDate.getTime() + 86400000
+                deadLine: 86400000
         	};
         	vm.isRented[vm.searchedMovies.indexOf(clickedMovie)] = true;
         	addedMovies.push(nthMovie);
@@ -55,10 +55,8 @@
     		itemsToDel.forEach(function(item, index) {
         		if (item) {
         			notMoreRented.push(vm.member.rentedMovies[index].id);
-        			console.log('inside not more rented');
         		} else {
         			keepAsRented.push(vm.member.rentedMovies[index]);
-        			console.log('inside keep as rented');
         		}
         	});
         	vm.member.rentedMovies = keepAsRented;
