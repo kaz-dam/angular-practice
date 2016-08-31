@@ -5,9 +5,9 @@
 		.module('app.layout')
 		.controller('MembercardController', MembercardController);
 
-	MembercardController.$inject = ['$rootScope', '$filter', 'dataservice', 'date'];
+	MembercardController.$inject = ['$rootScope', '$filter', 'dataservice', 'date', 'logger'];
 	/* @ngInject */
-	function MembercardController($rootScope, $filter, dataservice, date) {
+	function MembercardController($rootScope, $filter, dataservice, date, logger) {
 		var vm = this;
 		var members = [];
 		var movies = [];
@@ -92,10 +92,18 @@
             vm.checkbox = {};
 
             if (addedMovies.length) {
-            	dataservice.updateMember(addedMovies, vm.member._id);
+            	dataservice.updateMember(addedMovies, vm.member._id).then(function() {
+                    dataservice.getPeople(true).then(function() {
+                        logger.info('Movie(s) added');
+                    });
+                });
             	addedMovies = [];
             } else if (delInDb) {
-            	dataservice.updateMember(vm.member.rentedMovies, vm.member._id);
+            	dataservice.updateMember(vm.member.rentedMovies, vm.member._id).then(function() {
+                    dataservice.getPeople(true).then(function() {
+                        logger.info('Movie(s) deleted');
+                    });
+                });
             }
         }
 

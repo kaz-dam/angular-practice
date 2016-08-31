@@ -56,7 +56,7 @@
         movies: addedMovies
       };
 
-      $http.post('/api/updateMember', update)
+      return $http.post('/api/updateMember', update)
         .then(function(res) {
           return res;
         })
