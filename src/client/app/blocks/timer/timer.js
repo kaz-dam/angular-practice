@@ -19,11 +19,15 @@
 		////////////////////
 
 		function timerFormat(timeObj) {
-			var hour = Math.ceil((timeObj / 60 / 60) - 1);
-			var minute = Math.ceil((timeObj / 60 % 60) - 1);
+			var hour = Math.floor(timeObj / 60 / 60);
+			var minute = Math.floor(timeObj / 60 % 60);
 			var second = Math.ceil(timeObj % 60);
+			
+			if (second < 10) {
+				second = '0' + second;
+			}
 
-			return hour + ' Hours,' + minute + ' Minutes,' + second + ' Seconds';
+			return hour + ' : ' + minute + ' : ' + second;
 		}
 	}
 

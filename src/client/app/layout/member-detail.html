@@ -15,7 +15,7 @@
       	<tr ng-repeat="rm in vm.member.rentedMovies">
       		<td class="text-center">{{rm.title}}</td>
       		<td class="text-center">{{rm.currentDate | date:dd/MMM/yyyy}}</td>
-      		<td class="text-center">{{rm.deadLine | date:dd/MMM/yyyy}}</td>
+      		<td class="text-center">{{vm.hours[vm.member.rentedMovies.indexOf(rm)]}}</td>
       		<td class="text-center"><input type="checkbox" name="del" value="del" ng-model="vm.checkbox[vm.member.rentedMovies.indexOf(rm)]" ng-click="vm.enableDel()"></td>
       	</tr>
       </table>

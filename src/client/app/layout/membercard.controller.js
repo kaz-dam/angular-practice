@@ -26,6 +26,7 @@
         vm.delMovie = delMovie;
         vm.toggleButton = false;
         vm.enableDel = enableDel;
+        vm.hours = [];
 
         activate();
 
@@ -101,6 +102,7 @@
             } else if (delInDb) {
             	dataservice.updateMember(vm.member.rentedMovies, vm.member._id).then(function() {
                     dataservice.getPeople(true).then(function() {
+                        delInDb = false;
                         logger.info('Movie(s) deleted');
                     });
                 });
@@ -108,10 +110,12 @@
         }
 
         function clickEvent() {
+            vm.hours = [];
         	members = dataservice.cache.get('members');
             var memberIndex = dataservice.cache.get('memberIndex');
 
             vm.member = members[memberIndex];
+            timing(vm.member.rentedMovies);
             return vm.member;
         }
 
@@ -123,6 +127,22 @@
         		vm.searchedMovies = [];
         	}
         }
-	}
 
+        function timing(membersMovies) {
+            var dateObj = date.currentDate();
+
+            for (var i = 0; i < membersMovies.length; i++) {
+                var isoToJsDate = +new Date(membersMovies[i].currentDate);
+
+                vm.hours.push(Math.floor(
+                    ( membersMovies[i].deadLine - 
+                    (dateObj.getTime() - isoToJsDate)
+                    ) / 3600000));
+
+                if (vm.hours[i] <= 0) {
+                    vm.hours[i] = 0;
+                }
+            }
+        }
+	}
 })();
