@@ -27,6 +27,10 @@
 				second = '0' + second;
 			}
 
+			if (minute < 10) {
+				minute = '0' + minute;
+			}
+
 			return hour + ' : ' + minute + ' : ' + second;
 		}
 	}

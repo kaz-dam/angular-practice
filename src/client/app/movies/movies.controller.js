@@ -22,7 +22,7 @@
       Actors: '',
       Genre: '',
       Year: ''
-    }
+    };
     vm.showMovieDetail = showMovieDetail;
     vm.releaseDates = [];
     vm.title = 'Movie Database';

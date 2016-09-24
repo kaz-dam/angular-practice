@@ -14,9 +14,9 @@ module.exports = function(req, res, next) {
     
     if (typeof(clickedMovieId) === 'object') {
       clickedMovieId.forEach(function(id, index) {
-        db.collection('movies').updateOne({"_id": ObjectID(id)}, {$set: {"rented": rented}}, function(err, result) {
+        db.collection('movies').updateOne({'_id': new ObjectID(id)}, {$set: {'rented': rented}}, function(err, result) {
           assert.equal(null, err);
-          db.collection('movies').findOne({"_id": ObjectID(id)}, function(err, item) {
+          db.collection('movies').findOne({'_id': new ObjectID(id)}, function(err, item) {
             assert.equal(null, err);
             updatedItems.push(item);
             if (clickedMovieId.length - 1 === index) {
@@ -28,14 +28,16 @@ module.exports = function(req, res, next) {
         });
       });
     } else {
-      db.collection('movies').updateOne({"_id": ObjectID(clickedMovieId)}, {$set: {"rented": rented}}, function(err, result) {
-        assert.equal(null, err);
-        db.collection('movies').findOne({"_id": ObjectID(clickedMovieId)}, function(err, item) {
-          db.close();
-          res.status(200).send(item);
-        });
-        console.log('Field updated');
+      db.collection('movies')
+        .updateOne({'_id': new ObjectID(clickedMovieId)}, 
+          {$set: {'rented': rented}}, function(err, result) {
+            assert.equal(null, err);
+            db.collection('movies').findOne({'_id': new ObjectID(clickedMovieId)}, function(err, item) {
+              db.close();
+              res.status(200).send(item);
+            });
+            console.log('Field updated');
       });
     }
   });
-}
+};

@@ -1,5 +1,5 @@
-<div class="memberContainer" ng-show="showMovie" ng-controller="MoviecardController as vm">
-  <div class="memberDetailBg" ng-click="vm.hideMovie()">
+<div class="memberContainer" ng-controller="MoviecardController as vm">
+  <div class="memberDetailBg" ng-if="showMovie" ng-click="vm.hideMovie()">
     <div class="memberDetail" ng-click="$event.stopPropagation()">
       <h2>{{vm.movie.Title}}</h2>
       <h3>{{vm.movie.Year}}</h3>

@@ -32,7 +32,8 @@
 
         function activate() {
         	dataservice.getMovies().then(function(data) {
-        		return movies = data;
+        		movies = data;
+                return movies;
         	});
         }
 

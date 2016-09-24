@@ -38,11 +38,11 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr ng-repeat="p in vm.membersWithMovies">
+                  <tr ng-repeat="p in vm.membersWithMovies" class="memberTable">
                     <td>{{p.firstName}}</td>
                     <td>{{p.lastName}}</td>
                     <td><a href="emailto:{{p.email}}">{{p.email}}</a></td>
-                    <td>{{p.rentedMovies.length}}</td>
+                    <td class="rentedMovies">{{p.rentedMovies.length}}<div class="rentedMoviesHover"><p ng-repeat="m in p.rentedMovies">{{m.title}}</p></div></td>
                   </tr>
                 </tbody>
               </table>

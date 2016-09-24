@@ -43,7 +43,7 @@
       } else {
         return $http.get('/api/movies')
         .then(function(res) {
-          cache.put('movies', res.data)
+          cache.put('movies', res.data);
           return res.data;
         })
         .catch(fail);

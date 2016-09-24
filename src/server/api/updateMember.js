@@ -10,11 +10,13 @@ module.exports = function(req, res, next) {
 
   	mongo.connect(url, function(err, db) {
     	assert.equal(null, err);
-    	db.collection('members').updateOne({"_id": ObjectID(memberId)}, {$set: {"rentedMovies": movies}}, function(err, result) {
-      		assert.equal(null, err);
-      		console.log('Document updated');
-      		db.close();
+    	db.collection('members')
+        .updateOne({'_id': new ObjectID(memberId)},
+          {$set: {'rentedMovies': movies}}, function(err, result) {
+        		assert.equal(null, err);
+        		console.log('Document updated');
+        		db.close();
     	});
     	res.status(200).end();
   	});
-}
+};

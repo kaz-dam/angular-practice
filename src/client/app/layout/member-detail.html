@@ -1,5 +1,5 @@
-<div class="memberContainer" ng-show="showMember" ng-controller="MembercardController as vm">
-  <div class="memberDetailBg" ng-click="vm.hideMember()">
+<div class="memberContainer" ng-animate-children="true" ng-controller="MembercardController as vm">
+  <div class="memberDetailBg" ng-if="showMember" ng-click="vm.hideMember()">
     <div class="memberDetail" ng-click="$event.stopPropagation()">
       <h2>{{vm.member.firstName}} {{vm.member.lastName}}</h2>
       <p>{{vm.member.registered | date:'longDate'}}</p>

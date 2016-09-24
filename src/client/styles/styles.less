@@ -1969,9 +1969,9 @@ section.mainbar member-card a:hover h4 {
 
 /* member details */
 
-.memberContainer {
-    transition: all 0.8s ease-in-out;
-}
+// .memberContainer {
+//     transition: all 0.8s ease-in-out;
+// }
 
 .memberDetailBg {
     z-index: 99999;
@@ -1993,6 +1993,25 @@ section.mainbar member-card a:hover h4 {
     text-align: center;
     border-radius: 8px;
     box-shadow: 0px 5px 15px rgba(0,0,0,0.7);
+}
+
+.memberDetail.ng-enter {
+    transform: scale(0.5, 0.5) translateX(-100%);
+    transition: all 0.2s ease-in;
+}
+
+.memberDetail.ng-enter-active {
+    transform: scale(1, 1) translateX(0);
+}
+
+.memberDetailBg.ng-enter {
+    transition: all 0.2s ease-in;
+    opacity: 0;
+    
+}
+
+.memberDetailBg.ng-enter-active {
+    opacity: 1;
 }
 
 .memberTable {
@@ -2020,6 +2039,32 @@ section.mainbar movie-card a:visited {
     color: black;
     text-decoration: none;
     display: block;
+}
+
+section.mainbar .rentedMovies {
+    cursor: pointer;
+    position: absolute;
+}
+
+// section.mainbar .memberTable {
+//     position: absolute;
+// }
+
+section.mainbar .rentedMovies:hover .rentedMoviesHover {
+    display: block;
+}
+
+section.mainbar .rentedMoviesHover {
+    display: none;
+    position: relative;
+    // position: absolute;
+    z-index: 999;
+    background-color: white;
+    border: 1px solid black;
+    left: 20px;
+    top: -15px;
+    padding: 5px 5px;
+    border-radius: 3px;
 }
 
 /*#endregion */
